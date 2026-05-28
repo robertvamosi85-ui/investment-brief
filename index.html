@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Investment Brief">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Investment Brief</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -19,19 +19,11 @@
   --mono:'IBM Plex Mono',monospace;
   --serif:'Playfair Display',Georgia,serif;
   --sans:'IBM Plex Sans',system-ui,sans-serif;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{height:100%;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100%;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;}
 
-/* ══ LOADING ══ */
-#loading{position:fixed;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:12px;padding-top:var(--safe-top);}
-#loading h2{font-family:var(--serif);font-size:24px;font-weight:400;font-style:italic;}
-#loading p{font-family:var(--mono);font-size:11px;color:var(--ink-light);letter-spacing:.08em;}
-
-/* ══ DESKTOP MASTHEAD ══ */
+/* MASTHEAD */
 .mast{border-bottom:3px double var(--ink);padding:20px 36px 16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:12px;}
 .mast-l{font-family:var(--mono);font-size:10px;color:var(--ink-light);letter-spacing:.06em;line-height:1.9;}
 .mast-c{text-align:center;}
@@ -40,7 +32,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .mast-r{font-family:var(--mono);font-size:10px;color:var(--ink-light);text-align:right;line-height:1.9;}
 .mast-r .rate{color:var(--gold);font-size:13px;font-weight:500;}
 
-/* ══ EUR/USD BANNER ══ */
+/* EUR/USD BANNER */
 .eur-banner{display:flex;align-items:stretch;border:1px solid var(--rule);margin:16px 36px 0;overflow:hidden;}
 .eur-main{background:var(--ink);padding:12px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
 .eur-rate-big{font-family:var(--mono);font-size:20px;font-weight:500;}
@@ -52,11 +44,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .eur-outlook-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light);}
 .eur-outlook-val{font-family:var(--mono);font-size:12px;font-weight:500;}
 .eur-range{font-family:var(--mono);font-size:10px;color:var(--ink-light);}
-.eur-rising .eur-rate-big,.eur-rising .eur-arrow{color:#7ec8a0;}
-.eur-falling .eur-rate-big,.eur-falling .eur-arrow{color:#e87070;}
+.eur-rising .eur-rate-big,.eur-rising .eur-arrow{color:#e87070;}
+.eur-falling .eur-rate-big,.eur-falling .eur-arrow{color:#7ec8a0;}
 .eur-stable .eur-rate-big,.eur-stable .eur-arrow{color:var(--gold-light);}
 
-/* ══ DESKTOP NAV ══ */
+/* NAV */
 .nav{border-bottom:1px solid var(--ink);padding:0 36px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;background:var(--paper-mid);margin-top:0;}
 .nav::-webkit-scrollbar{display:none;}
 .nb{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);background:none;border:none;border-bottom:2px solid transparent;padding:10px 14px;cursor:pointer;white-space:nowrap;position:relative;bottom:-1px;transition:color .15s;}
@@ -64,21 +56,23 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .nb.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:500;}
 .nb.pulse{color:var(--gold);}
 .nb.pulse.on{border-bottom-color:var(--gold);}
+.nb.deepdive{color:var(--blue);}
+.nb.deepdive.on{color:var(--blue);border-bottom-color:var(--blue);font-weight:500;}
 
-/* ══ LAYOUT ══ */
+/* LAYOUT */
 .main{padding:24px 36px 60px;max-width:1200px;margin:0 auto;}
 .panel{display:none;}
 .panel.on{display:block;animation:fi .18s ease;}
 @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
 
-/* ══ HEADINGS ══ */
+/* HEADINGS */
 .sr{display:flex;align-items:center;gap:12px;margin-bottom:16px;margin-top:26px;}
 .sr:first-child{margin-top:0;}
 .sr h2{font-family:var(--serif);font-size:19px;font-weight:400;font-style:italic;white-space:nowrap;}
 .sr::after{content:'';flex:1;height:1px;background:var(--rule);}
 .sr .sub{font-family:var(--mono);font-size:10px;color:var(--ink-light);letter-spacing:.06em;white-space:nowrap;}
 
-/* ══ VITALS ══ */
+/* VITALS */
 .vitals-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px;}
 .vital-card{border:1px solid var(--rule);padding:14px 16px;background:var(--paper);}
 .vital-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;}
@@ -92,7 +86,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .vital-sub{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-bottom:6px;}
 .vital-explain{font-size:12px;color:var(--ink-mid);line-height:1.6;border-top:1px solid var(--rule);padding-top:8px;margin-top:6px;}
 
-/* ══ REGIME ══ */
+/* REGIME */
 .regime{border:2px solid var(--ink);padding:16px 20px;margin-bottom:22px;display:grid;grid-template-columns:auto 1fr;gap:16px;}
 .regime-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);writing-mode:vertical-rl;transform:rotate(180deg);}
 .regime h3{font-family:var(--serif);font-size:17px;font-weight:600;font-style:italic;margin-bottom:6px;}
@@ -103,7 +97,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .rt-r{border-color:var(--red);color:var(--red);background:rgba(139,26,26,.06);}
 .rt-a{border-color:var(--gold);color:var(--gold);background:rgba(184,134,11,.06);}
 
-/* ══ LEAGUE TABLES ══ */
+/* LEAGUE TABLES */
 .league-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px;}
 .ltable{border:1px solid var(--rule);overflow:hidden;}
 .lthead{padding:9px 14px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;}
@@ -123,7 +117,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .lr-pct{font-family:var(--mono);font-size:12px;font-weight:500;text-align:right;}
 .up{color:var(--green);}.dn{color:var(--red);}
 
-/* ══ SECTOR GRID ══ */
+/* SECTOR GRID */
 .sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:22px;}
 .sec-cell{padding:10px 12px;border:1px solid var(--rule);position:relative;overflow:hidden;}
 .sec-bg{position:absolute;inset:0;opacity:.1;}
@@ -131,7 +125,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .sec-pct{font-family:var(--mono);font-size:14px;font-weight:500;position:relative;z-index:1;}
 .sec-driver{font-family:var(--mono);font-size:9px;color:var(--ink-light);position:relative;z-index:1;margin-top:2px;}
 
-/* ══ FUND FLOWS ══ */
+/* FUND FLOWS */
 .flows-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:22px;}
 .flow-card{border:1px solid var(--rule);padding:12px 14px;}
 .flow-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:5px;}
@@ -139,11 +133,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .flow-dir{font-family:var(--mono);font-size:10px;}
 .flow-bar-w{width:100%;height:3px;background:var(--paper-dark);margin-top:7px;border-radius:1px;overflow:hidden;}
 .flow-bar{height:100%;border-radius:1px;}
-.in-color{color:var(--green);}.out-color{color:var(--red);}
-.bar-in{background:var(--green-light);}.bar-out{background:var(--red-light);}
+.in-color{color:var(--green);} .out-color{color:var(--red);}
+.bar-in{background:var(--green-light);} .bar-out{background:var(--red-light);}
 .flow-note{font-size:11px;color:var(--ink-light);margin-top:5px;line-height:1.5;}
 
-/* ══ TRENDS ══ */
+/* TRENDS */
 .trend-list{display:flex;flex-direction:column;}
 .trend-item{display:grid;grid-template-columns:28px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
 .trend-item:last-child{border-bottom:none;}
@@ -157,7 +151,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .s-mixed{border-color:var(--gold);color:var(--gold);}
 .t-evidence{font-size:11px;color:var(--green);margin-top:4px;font-style:italic;}
 
-/* ══ EXEC ══ */
+/* EXEC */
 .exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
 .ec{border:1px solid var(--rule);border-left:3px solid var(--ink);padding:14px 16px;background:var(--paper-mid);}
 .ec.gold{border-left-color:var(--gold);}
@@ -174,7 +168,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .mt-a{border-color:var(--gold);color:var(--gold);background:rgba(184,134,11,.06);}
 .mt-b{border-color:var(--blue);color:var(--blue);background:rgba(26,45,92,.06);}
 
-/* ══ MAG7 ══ */
+/* MAG7 */
 .mag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
 .mc{border:1px solid var(--rule);padding:14px 16px;background:var(--paper);}
 .mc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
@@ -198,7 +192,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .v-caution{border-color:var(--red);color:var(--red);}
 .mc-news{font-size:11px;color:var(--ink-light);margin-top:6px;line-height:1.5;border-top:1px solid var(--rule);padding-top:6px;}
 
-/* ══ THESES ══ */
+/* THESES */
 .thesis-block{border:1px solid var(--rule);margin-bottom:10px;overflow:hidden;}
 .th-head{background:var(--ink);color:var(--paper);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
 .th-head h3{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
@@ -217,7 +211,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .th-ichange{font-family:var(--mono);font-size:11px;}
 .th-inote{font-size:11px;color:var(--ink-light);line-height:1.5;}
 
-/* ══ DISCOVERIES ══ */
+/* DISCOVERIES */
 .disc-list{display:flex;flex-direction:column;}
 .disc-item{display:grid;grid-template-columns:36px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
 .disc-item:last-child{border-bottom:none;}
@@ -232,13 +226,13 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .dt-watch{border-color:var(--gold);color:var(--gold);}
 .dt-neutral{border-color:var(--ink-light);color:var(--ink-light);}
 
-/* ══ MACRO ══ */
+/* MACRO */
 .macro-blocks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
 .mb{border:1px solid var(--rule);border-left:3px solid var(--ink);padding:14px 16px;background:var(--paper-mid);}
 .mb-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;}
 .mb-body{font-size:13px;color:var(--ink);line-height:1.65;}
 
-/* ══ GLOSSARY ══ */
+/* GLOSSARY */
 .gloss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
 .gc{border:1px solid var(--rule);padding:16px;}
 .gc-term{font-family:var(--mono);font-size:13px;font-weight:500;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--ink);}
@@ -248,7 +242,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .gc-signal{font-family:var(--mono);font-size:10px;color:var(--ink-light);padding-top:6px;border-top:1px solid var(--rule);}
 .gc-signal b{color:var(--gold);}
 
-/* ══ RISING STARS ══ */
+/* RISING STARS */
 .scout-grid{display:flex;flex-direction:column;gap:18px;}
 .scout-card{border:1px solid var(--rule);background:var(--paper);overflow:hidden;}
 .scout-head{padding:11px 16px;background:var(--paper-mid);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
@@ -277,21 +271,22 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .scout-killer{margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--ink-light);padding:8px 12px;border:1px dashed rgba(139,26,26,.25);line-height:1.6;}
 .scout-killer b{color:var(--red-light);}
 .scout-empty{font-family:var(--mono);font-size:12px;color:var(--ink-light);padding:40px 0;text-align:center;border:1px dashed var(--rule);}
+.scout-footer{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:20px;padding-top:12px;border-top:1px solid var(--rule);line-height:1.9;}
 
-/* ══ SIGNAL LIGHTS ══ */
+/* SIGNAL LIGHTS */
 .sig{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;font-weight:500;padding:2px 8px;border-radius:2px;letter-spacing:.04em;white-space:nowrap;}
 .sig-green{background:rgba(26,92,53,.10);color:var(--green);border:1px solid rgba(26,92,53,.2);}
 .sig-amber{background:rgba(184,134,11,.10);color:var(--gold);border:1px solid rgba(184,134,11,.2);}
 .sig-red{background:rgba(139,26,26,.10);color:var(--red);border:1px solid rgba(139,26,26,.2);}
 
-/* ══ INFO TOOLTIP ══ */
+/* INFO TOOLTIP */
 .itip{position:relative;display:inline-block;cursor:help;margin-left:5px;vertical-align:middle;}
 .itip-icon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--rule);font-family:var(--mono);font-size:9px;color:var(--ink-light);line-height:1;}
 .itip-box{display:none;position:absolute;z-index:20;bottom:130%;left:50%;transform:translateX(-50%);width:270px;background:var(--ink);color:var(--paper);font-size:11px;font-family:var(--sans);line-height:1.5;padding:9px 11px;border-radius:3px;pointer-events:none;}
 .itip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink);}
 .itip:hover .itip-box{display:block;}
 
-/* ══ INDICATOR ROWS ══ */
+/* INDICATOR ROWS */
 .ind-panel{margin-top:8px;}
 .ind-status-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--paper-mid);border:1px solid var(--rule);border-radius:3px;margin-bottom:20px;}
 .ind-status-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);}
@@ -302,13 +297,13 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .ind-impl{font-size:11px;color:var(--ink-light);margin-top:4px;font-style:italic;}
 .ind-clear{font-size:12px;color:var(--ink-light);font-style:italic;margin-top:3px;}
 
-/* ══ GEO ROWS ══ */
+/* GEO ROWS */
 .geo-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
 .geo-row:last-child{border-bottom:none;}
 .geo-flag{font-size:20px;line-height:1;padding-top:2px;}
 .geo-label{font-size:13px;font-weight:500;display:flex;align-items:center;margin-bottom:4px;}
 
-/* ══ MOAT WATCH ══ */
+/* MOAT WATCH */
 .moat-grid{margin-top:4px;}
 .moat-row{display:grid;grid-template-columns:140px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
 .moat-row:last-child{border-bottom:none;}
@@ -318,75 +313,223 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .moat-challenger{font-family:var(--mono);font-size:11px;color:var(--red-light);}
 .moat-domain{font-size:12px;font-weight:500;display:flex;align-items:center;margin-bottom:4px;color:var(--ink-mid);}
 
-/* ══ MOBILE CHROME — always defined, shown only via media query ══ */
-.mob-chrome{display:none;}
-.mob-top{
-  background:var(--ink);
-  padding-top:var(--safe-top);
-  padding-left:16px;padding-right:16px;padding-bottom:12px;
-  display:flex;justify-content:space-between;align-items:flex-end;
-  position:sticky;top:0;z-index:100;
-}
-.mob-top-title{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--paper);font-weight:400;}
-.mob-top-rate{font-family:var(--mono);font-size:12px;font-weight:500;}
-.mob-top-date{font-family:var(--mono);font-size:9px;color:rgba(247,243,236,.45);letter-spacing:.06em;margin-top:2px;}
-.mob-back{display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:.06em;cursor:pointer;padding:0;}
-.mob-back svg{width:16px;height:16px;stroke:var(--paper);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.mob-launcher{display:none;}
-.mob-launcher-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:0.5px solid var(--rule);
-}
-.mob-cell{
-  padding:18px 8px 16px;
-  display:flex;flex-direction:column;align-items:center;gap:7px;
-  border-right:0.5px solid var(--rule);
-  border-bottom:0.5px solid var(--rule);
-  background:var(--paper);
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  transition:background .1s;
-  min-height:100px;
-}
-.mob-cell:active{background:var(--paper-mid);}
-.mob-cell:nth-child(3n){border-right:none;}
-.mob-cell:nth-last-child(-n+3){border-bottom:none;}
-.mob-icon{
-  width:44px;height:44px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;font-family:var(--mono);font-weight:500;
-  flex-shrink:0;
-}
-.mob-label{font-family:var(--mono);font-size:9px;text-align:center;color:var(--ink-mid);letter-spacing:.04em;text-transform:uppercase;line-height:1.35;}
-.mob-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.dot-g{background:var(--green);}
-.dot-a{background:var(--gold);}
-.dot-r{background:var(--red);}
-.dot-b{background:var(--blue);}
-.dot-n{background:var(--paper-dark);}
-.mob-content{display:none;}
+/* RISING STARS (screener) */
+.star-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:16px;}
+.star-card{border:1px solid var(--rule);background:var(--paper-mid);padding:16px;}
+.star-head{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:start;margin-bottom:12px;}
+.star-rank{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--paper-dark);line-height:1;}
+.star-name{font-size:13px;font-weight:500;}
+.star-ticker{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:2px;}
+.star-sector{font-family:var(--mono);font-size:9px;color:var(--ink-light);text-align:right;padding-top:2px;}
+
+/* LOADING */
+#loading{position:fixed;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:12px;}
+#loading h2{font-family:var(--serif);font-size:24px;font-weight:400;font-style:italic;}
+#loading p{font-family:var(--mono);font-size:11px;color:var(--ink-light);letter-spacing:.08em;}
+
+/* GUT CHECK */
+.gc-input-wrap{border:1px solid var(--rule);background:var(--paper);padding:20px 24px;margin-bottom:28px;}
+.gc-input-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:10px;display:block;}
+.gc-textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--paper-mid);border:1px solid var(--paper-dark);padding:12px 14px;resize:vertical;min-height:80px;line-height:1.5;outline:none;}
+.gc-textarea:focus{border-color:var(--gold);}
+.gc-submit{margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:none;padding:10px 20px;cursor:pointer;}
+.gc-submit:hover{background:var(--ink-mid);}
+.gc-hint{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:8px;}
+.gc-card{border:1px solid var(--rule);background:var(--paper);margin-bottom:20px;overflow:hidden;}
+.gc-card-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--rule);background:var(--paper-mid);}
+.gc-ts{font-family:var(--mono);font-size:9px;color:var(--ink-light);letter-spacing:.06em;}
+.gc-signal-pill{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.06em;padding:3px 10px;border-radius:2px;}
+.gc-pill-confirmed{background:#1a5c35;color:#fff;}
+.gc-pill-mixed{background:#7a5f00;color:#fff;}
+.gc-pill-watch{background:#1a2d5c;color:#fff;}
+.gc-pill-refuted{background:#8b1a1a;color:#fff;}
+.gc-pill-default{background:var(--ink);color:var(--paper);}
+.gc-raw{font-family:var(--serif);font-size:16px;font-style:italic;padding:14px 16px 10px;border-bottom:1px solid var(--rule);}
+.gc-conf{font-family:var(--mono);font-size:10px;color:var(--ink-light);padding:0 16px 12px;}
+.gc-body{padding:14px 16px;}
+.gc-section-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;margin-top:14px;}
+.gc-section-lbl:first-child{margin-top:0;}
+.gc-hyp-list{list-style:none;padding:0;}
+.gc-hyp-list li{font-size:13px;padding:3px 0 3px 14px;position:relative;}
+.gc-hyp-list li::before{content:'—';position:absolute;left:0;color:var(--ink-light);}
+.gc-ev-item{border-left:3px solid var(--paper-dark);padding:8px 12px;margin-bottom:8px;background:var(--paper-mid);}
+.gc-ev-item.primary-ev{border-left-color:var(--gold);}
+.gc-ev-point{font-size:13px;line-height:1.5;margin-bottom:4px;}
+.gc-ev-src{font-family:var(--mono);font-size:10px;color:var(--ink-light);}
+.gc-impact{font-size:13px;line-height:1.5;padding:10px 14px;background:rgba(26,20,16,.04);border-left:3px solid var(--gold);}
+.gc-nuance{font-size:13px;line-height:1.5;}
+.gc-change{font-family:var(--mono);font-size:11px;color:var(--ink-mid);line-height:1.6;padding:8px 12px;background:var(--paper-mid);border:1px solid var(--rule);}
+.gc-action{font-size:13px;line-height:1.5;font-weight:500;}
+.gc-retro{margin:14px 16px 0;padding:10px 14px;background:#1a5c35;color:#e8f5ee;}
+.gc-retro-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;opacity:.8;}
+.gc-retro-txt{font-size:13px;}
+.gc-empty{font-family:var(--mono);font-size:12px;color:var(--ink-light);padding:40px 0;text-align:center;border:1px dashed var(--rule);}
+
+/* ═══════════════════════════════════════════════════
+   DEEP DIVE TAB — Company Intelligence Brief
+   ═══════════════════════════════════════════════════ */
+
+.dd-intro{display:flex;align-items:stretch;gap:0;border:1px solid var(--rule);margin-bottom:28px;overflow:hidden;}
+.dd-intro-label{background:var(--ink);color:var(--paper);padding:16px 14px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;flex-shrink:0;}
+.dd-intro-body{padding:16px 20px;background:var(--paper-mid);flex:1;}
+.dd-intro-body p{font-size:13px;color:var(--ink-mid);line-height:1.65;}
+.dd-intro-body strong{color:var(--ink);font-weight:500;}
+
+.dd-search-wrap{display:flex;gap:0;border:2px solid var(--ink);margin-bottom:8px;overflow:hidden;}
+.dd-search-input{flex:1;font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--paper);border:none;padding:14px 18px;outline:none;}
+.dd-search-input::placeholder{color:var(--paper-dark);font-style:italic;}
+.dd-search-input:focus{background:var(--paper-mid);}
+.dd-search-btn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:none;padding:0 24px;cursor:pointer;transition:background .15s;white-space:nowrap;flex-shrink:0;}
+.dd-search-btn:hover{background:var(--ink-mid);}
+.dd-search-btn:disabled{background:var(--paper-dark);color:var(--ink-light);cursor:not-allowed;}
+.dd-search-hint{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-bottom:24px;}
+
+.dd-key-wrap{border:1px solid var(--rule);padding:14px 16px;margin-bottom:24px;background:var(--paper-mid);}
+.dd-key-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px;}
+.dd-key-row{display:flex;gap:8px;align-items:center;}
+.dd-key-input{flex:1;font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--paper);border:1px solid var(--paper-dark);padding:8px 10px;outline:none;}
+.dd-key-input:focus{border-color:var(--gold);}
+.dd-key-save{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:none;padding:8px 16px;cursor:pointer;}
+.dd-key-status{font-family:var(--mono);font-size:10px;}
+.dd-key-status.ok{color:var(--green);}
+.dd-key-status.missing{color:var(--red-light);}
+
+/* Loading state */
+.dd-loading{display:none;padding:48px 0;text-align:center;}
+.dd-loading.show{display:block;}
+.dd-spinner{display:inline-block;width:28px;height:28px;border:2px solid var(--paper-dark);border-top-color:var(--ink);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dd-loading-text{font-family:var(--mono);font-size:11px;color:var(--ink-light);letter-spacing:.06em;}
+.dd-loading-company{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink);margin-top:4px;}
+
+/* Result card */
+.dd-result{display:none;}
+.dd-result.show{display:block;animation:fi .2s ease;}
+
+.dd-result-header{border:2px solid var(--ink);padding:18px 22px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:flex-start;}
+.dd-result-company{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1;}
+.dd-result-meta{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:5px;letter-spacing:.04em;}
+.dd-result-stamp{text-align:right;}
+.dd-result-stamp-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);}
+.dd-result-stamp-date{font-family:var(--mono);font-size:11px;color:var(--ink);margin-top:2px;}
+
+.dd-sections{display:flex;flex-direction:column;gap:2px;margin-bottom:20px;}
+
+.dd-section{border:1px solid var(--rule);overflow:hidden;}
+.dd-section-head{display:grid;grid-template-columns:28px 1fr;align-items:center;padding:12px 16px;background:var(--paper-mid);border-bottom:1px solid var(--rule);}
+.dd-section-num{font-family:var(--mono);font-size:18px;color:var(--paper-dark);line-height:1;}
+.dd-section-title{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--ink-light);}
+.dd-section-body{padding:14px 16px 14px 58px;font-size:13px;color:var(--ink);line-height:1.75;}
+.dd-section-body strong{color:var(--ink);font-weight:500;}
+.dd-section-body .dd-anchor{font-family:var(--mono);font-size:11px;color:var(--gold);background:rgba(184,134,11,.08);padding:2px 8px;border:1px solid rgba(184,134,11,.2);border-radius:2px;white-space:nowrap;}
+
+/* Section color accents */
+.dd-section:nth-child(1) .dd-section-head{border-left:3px solid var(--blue);}
+.dd-section:nth-child(2) .dd-section-head{border-left:3px solid var(--gold);}
+.dd-section:nth-child(3) .dd-section-head{border-left:3px solid var(--green);}
+.dd-section:nth-child(4) .dd-section-head{border-left:3px solid var(--ink-light);}
+.dd-section:nth-child(5) .dd-section-head{border-left:3px solid var(--ink);}
+.dd-section:nth-child(6) .dd-section-head{border-left:3px solid var(--green);}
+.dd-section:nth-child(7) .dd-section-head{border-left:3px solid var(--red);}
+.dd-section:nth-child(8) .dd-section-head{border-left:3px solid var(--ink-mid);}
+.dd-section:nth-child(9) .dd-section-head{border-left:3px solid var(--gold-light);}
+.dd-section:nth-child(10) .dd-section-head{border-left:3px solid var(--blue);}
+
+.dd-misunderstood{background:var(--ink);color:var(--paper);}
+.dd-misunderstood .dd-section-head{background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1);}
+.dd-misunderstood .dd-section-num{color:rgba(247,243,236,.2);}
+.dd-misunderstood .dd-section-title{color:rgba(247,243,236,.5);}
+.dd-misunderstood .dd-section-body{color:var(--paper);font-size:14px;}
+
+.dd-error{border:1px solid var(--red);padding:20px 24px;color:var(--red);font-family:var(--mono);font-size:12px;margin-bottom:20px;}
+.dd-error-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;opacity:.7;}
+
+.dd-new-btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:none;color:var(--ink-light);border:1px solid var(--rule);padding:8px 16px;cursor:pointer;margin-top:16px;}
+.dd-new-btn:hover{color:var(--ink);border-color:var(--ink);}
+
+/* History strip */
+.dd-history{margin-top:32px;}
+.dd-history-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--rule);}
+.dd-history-list{display:flex;flex-wrap:wrap;gap:6px;}
+.dd-history-item{font-family:var(--mono);font-size:10px;padding:4px 10px;border:1px solid var(--rule);cursor:pointer;color:var(--ink-light);background:var(--paper-mid);}
+.dd-history-item:hover{border-color:var(--blue);color:var(--blue);}
+
+/* ── MOBILE TOP BAR ── */
+.mob-bar{display:none;background:var(--ink);padding:env(safe-area-inset-top,44px) 20px 12px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-shrink:0;}
+.mob-bar-title{font-family:var(--serif);font-size:17px;font-weight:400;font-style:italic;color:var(--paper);}
+.mob-bar-rate{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.mob-bar-rate-val{font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:-.2px;}
+.mob-bar-rate-label{font-family:var(--mono);font-size:9px;color:rgba(247,243,236,.4);letter-spacing:.1em;text-transform:uppercase;}
+.mob-rate-falling{color:#7ec8a0;}
+.mob-rate-rising{color:#e87070;}
+.mob-rate-stable{color:var(--gold-light);}
+
+/* ── MOBILE LAUNCHER ── */
+.mob-launcher{display:none;flex-direction:column;flex:1;}
+.mob-grid{display:grid;grid-template-columns:1fr 1fr;flex:1;}
+.mob-tile{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:18px 16px 16px;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper);cursor:pointer;min-height:calc((100svh - 80px) / 5);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.mob-tile:active{background:var(--paper-mid);}
+.mob-tile-icon{font-size:20px;margin-bottom:8px;line-height:1;}
+.mob-tile-label{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--ink);text-transform:uppercase;line-height:1.3;}
+.mob-tile-sub{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:4px;line-height:1.4;}
+.mob-tile-dot{width:8px;height:8px;border-radius:50%;position:absolute;top:14px;right:14px;}
+.mob-dot-green{background:var(--green);}
+.mob-dot-amber{background:var(--gold);}
+.mob-dot-red{background:var(--red);}
+.mob-dot-blue{background:var(--blue);}
+.mob-tile-accent{position:absolute;bottom:0;left:0;right:0;height:3px;}
+.mob-acc-gold{background:var(--gold);}
+.mob-acc-green{background:var(--green);}
+.mob-acc-red{background:var(--red);}
+.mob-acc-blue{background:var(--blue);}
+.mob-acc-ink{background:var(--ink);}
+
+/* ── MOBILE BACK BAR ── */
+.mob-back{display:none;background:var(--ink);padding:10px 18px;align-items:center;gap:8px;flex-shrink:0;}
+.mob-back-btn{font-family:var(--mono);font-size:12px;color:rgba(247,243,236,.6);background:none;border:none;cursor:pointer;padding:0;letter-spacing:.04em;}
+.mob-back-section{font-family:var(--mono);font-size:12px;color:var(--paper);font-weight:500;margin-left:auto;letter-spacing:.04em;}
 
 @media(max-width:700px){
-  /* hide desktop shell */
-  .mast,.nav,.eur-banner{display:none;}
-  .main{display:none;}
+  /* Hide desktop chrome */
+  .mast,.eur-banner,.nav{display:none!important;}
 
-  /* show mobile shell */
-  .mob-chrome{display:block;}
-  .mob-launcher{display:block;padding-bottom:calc(20px + var(--safe-bottom));}
-  .mob-launcher.hidden{display:none;}
+  /* Show mobile chrome */
+  .mob-bar{display:flex;}
 
-  /* content area when a tab is open */
-  .mob-content{
-    padding:16px 16px calc(32px + var(--safe-bottom));
-    display:none;
-  }
-  .mob-content.show{display:block;}
+  /* App = flex column full height */
+  #app{display:flex!important;flex-direction:column;min-height:100svh;}
 
-  /* reflow content for mobile */
+  /* Launcher visible at home */
+  .mob-launcher{display:flex;}
+
+  /* Content area */
+  .main{padding:16px 16px 60px;}
+
+  /* BIGGER BODY TEXT */
+  .vital-explain{font-size:15px!important;line-height:1.65!important;}
+  .regime p,.mb-body,.ec-body{font-size:15px!important;line-height:1.7!important;}
+  .th-inote,.th-evidence{font-size:14px!important;line-height:1.65!important;}
+  .d-detail,.disc-item{font-size:14px!important;line-height:1.7!important;}
+  .ind-finding,.ind-impl,.ind-clear{font-size:14px!important;line-height:1.65!important;}
+  .t-detail,.t-evidence{font-size:14px!important;line-height:1.65!important;}
+  .mc-news{font-size:14px!important;line-height:1.65!important;}
+  .flow-note{font-size:13px!important;}
+  .gc-what,.gc-story,.gc-signal{font-size:14px!important;line-height:1.65!important;}
+  .lr-name{font-size:14px!important;}
+  .lr-sec{font-size:11px!important;}
+  .lrow{padding:10px 14px!important;}
+  .mc-row{font-size:13px!important;padding:7px 0!important;}
+  .mc-row span:last-child{font-size:13px!important;}
+
+  /* Grid → single column */
   .vitals-row,.exec-grid,.macro-blocks,.league-wrap{grid-template-columns:1fr;}
-  .moat-row{grid-template-columns:100px 1fr auto;}
-  .disc-item{grid-template-columns:28px 1fr auto;}
+  .league-wrap{gap:12px;}
+
+  /* Deep Dive */
+  .dd-result-header{flex-direction:column;gap:10px;}
+  .dd-section-body{padding-left:16px;font-size:15px!important;line-height:1.7!important;}
+  .dd-search-wrap{flex-direction:column;}
+  .dd-search-btn{padding:14px 18px;}
 }
 </style>
 </head>
@@ -399,7 +542,87 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 
 <div id="app" style="display:none;">
 
-<!-- ══ DESKTOP SHELL ══ -->
+<!-- MOBILE TOP BAR -->
+<div class="mob-bar" id="mob-bar">
+  <div class="mob-bar-title">The Investment Brief</div>
+  <div class="mob-bar-rate">
+    <div class="mob-bar-rate-val mob-rate-stable" id="mob-rate">—</div>
+    <div class="mob-bar-rate-label">EUR / USD</div>
+  </div>
+</div>
+
+<!-- MOBILE BACK BAR -->
+<div class="mob-back" id="mob-back">
+  <button class="mob-back-btn" onclick="mobHome()">← Home</button>
+  <span class="mob-back-section" id="mob-back-section"></span>
+</div>
+
+<!-- MOBILE LAUNCHER -->
+<div class="mob-launcher" id="mob-launcher">
+  <div class="mob-grid">
+    <div class="mob-tile" onclick="mobShow('pulse','Market Pulse')">
+      <div class="mob-tile-dot mob-dot-amber"></div>
+      <div class="mob-tile-icon">●</div>
+      <div><div class="mob-tile-label">Market Pulse</div><div class="mob-tile-sub" id="msub-pulse">VIX · F&amp;G · Sectors</div></div>
+      <div class="mob-tile-accent mob-acc-gold"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('exec','Executive Summary')">
+      <div class="mob-tile-dot mob-dot-green"></div>
+      <div class="mob-tile-icon">◈</div>
+      <div><div class="mob-tile-label">Executive Summary</div><div class="mob-tile-sub">Mover · Risk · Call</div></div>
+      <div class="mob-tile-accent mob-acc-green"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('macro','World Macro')">
+      <div class="mob-tile-dot mob-dot-amber"></div>
+      <div class="mob-tile-icon">◎</div>
+      <div><div class="mob-tile-label">World Macro</div><div class="mob-tile-sub">US · EU · Asia</div></div>
+      <div class="mob-tile-accent mob-acc-ink"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('mag7','Mag7 Scorecard')">
+      <div class="mob-tile-dot mob-dot-green"></div>
+      <div class="mob-tile-icon">▲</div>
+      <div><div class="mob-tile-label">Mag7 Scorecard</div><div class="mob-tile-sub" id="msub-mag7">All 7 · verdicts</div></div>
+      <div class="mob-tile-accent mob-acc-gold"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('theses','Six Theses')">
+      <div class="mob-tile-dot mob-dot-green"></div>
+      <div class="mob-tile-icon">⬡</div>
+      <div><div class="mob-tile-label">Six Theses</div><div class="mob-tile-sub" id="msub-theses">Weekly check</div></div>
+      <div class="mob-tile-accent mob-acc-blue"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('discoveries','8 Discoveries')">
+      <div class="mob-tile-dot mob-dot-amber"></div>
+      <div class="mob-tile-icon">◉</div>
+      <div><div class="mob-tile-label">8 Discoveries</div><div class="mob-tile-sub">Worth knowing</div></div>
+      <div class="mob-tile-accent mob-acc-ink"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('aitrade','AI Trade')">
+      <div class="mob-tile-dot mob-dot-amber"></div>
+      <div class="mob-tile-icon">⬢</div>
+      <div><div class="mob-tile-label">AI Trade</div><div class="mob-tile-sub" id="msub-ai">5 indicators</div></div>
+      <div class="mob-tile-accent mob-acc-gold"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('semis','Semis Intel')">
+      <div class="mob-tile-dot mob-dot-amber"></div>
+      <div class="mob-tile-icon">◧</div>
+      <div><div class="mob-tile-label">Semis Intel</div><div class="mob-tile-sub">Supply chain</div></div>
+      <div class="mob-tile-accent mob-acc-red"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('risers','Rising Stars')">
+      <div class="mob-tile-dot mob-dot-blue"></div>
+      <div class="mob-tile-icon">★</div>
+      <div><div class="mob-tile-label">Rising Stars</div><div class="mob-tile-sub" id="msub-risers">Screener</div></div>
+      <div class="mob-tile-accent mob-acc-gold"></div>
+    </div>
+    <div class="mob-tile" onclick="mobShow('glossary','Glossary')">
+      <div class="mob-tile-dot mob-dot-blue"></div>
+      <div class="mob-tile-icon">📖</div>
+      <div><div class="mob-tile-label">Glossary</div><div class="mob-tile-sub">10 key terms</div></div>
+      <div class="mob-tile-accent mob-acc-blue"></div>
+    </div>
+  </div>
+</div>
+
 <div class="mast">
   <div class="mast-l">Investor: Robert Vámosi<br>Profile: Moderate · EUR-based · Long-term<br>Universe: 125 instruments</div>
   <div class="mast-c"><h1>The Investment Brief</h1><div class="tag">Private Intelligence · Every Thursday 06:30</div></div>
@@ -426,16 +649,18 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 </div>
 
 <div class="nav">
-  <button class="nb pulse on" onclick="showTab('pulse',this)">● Market Pulse</button>
-  <button class="nb" onclick="showTab('exec',this)">Executive Summary</button>
-  <button class="nb" onclick="showTab('macro',this)">World Macro</button>
-  <button class="nb" onclick="showTab('mag7',this)">Mag7 Scorecard</button>
-  <button class="nb" onclick="showTab('theses',this)">Six Theses</button>
-  <button class="nb" onclick="showTab('discoveries',this)">8 Discoveries</button>
-  <button class="nb" onclick="showTab('aitrade',this)">AI Trade Integrity</button>
-  <button class="nb" onclick="showTab('semis',this)">Semis Intel</button>
-  <button class="nb pulse" onclick="showTab('risers',this)">★ Rising Stars</button>
-  <button class="nb" onclick="showTab('glossary',this)">Glossary</button>
+  <button class="nb pulse on" onclick="show('pulse',this)">● Market Pulse</button>
+  <button class="nb" onclick="show('exec',this)">Executive Summary</button>
+  <button class="nb" onclick="show('macro',this)">World Macro</button>
+  <button class="nb" onclick="show('mag7',this)">Mag7 Scorecard</button>
+  <button class="nb" onclick="show('theses',this)">Six Theses</button>
+  <button class="nb" onclick="show('discoveries',this)">8 Discoveries</button>
+  <button class="nb" onclick="show('aitrade',this)">AI Trade Integrity</button>
+  <button class="nb" onclick="show('semis',this)">Semis Intel</button>
+  <button class="nb pulse" id="nb-risers" onclick="show('risers',this)">★ Rising Stars</button>
+  <button class="nb" style="color:var(--gold);border-bottom-color:transparent;" onclick="show('gut-check',this)" id="nb-gut">⚡ Gut Check</button>
+  <button class="nb deepdive" onclick="show('deepdive',this)">◎ Deep Dive</button>
+  <button class="nb" onclick="show('glossary',this)">Glossary</button>
 </div>
 
 <div class="main">
@@ -449,147 +674,62 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <div id="semis" class="panel"></div>
   <div id="risers" class="panel"></div>
   <div id="glossary" class="panel"></div>
+  <div id="gut-check" class="panel"></div>
+  <div id="deepdive" class="panel"></div>
 </div>
-
-<!-- ══ MOBILE SHELL ══ -->
-<div class="mob-chrome">
-
-  <!-- top bar: changes between launcher header and content header -->
-  <div class="mob-top" id="mob-top">
-    <div>
-      <div class="mob-top-title">The Investment Brief</div>
-      <div class="mob-top-date" id="mob-date">—</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="mob-top-rate" id="mob-rate">—</div>
-    </div>
-  </div>
-
-  <!-- launcher: 12-tab grid -->
-  <div class="mob-launcher" id="mob-launcher">
-    <div class="mob-launcher-grid" id="mob-grid"></div>
-  </div>
-
-  <!-- content: shown when a tab is tapped -->
-  <div class="mob-content" id="mob-content">
-    <!-- dynamic content injected here from desktop panels -->
-  </div>
-
-</div><!-- /mob-chrome -->
 
 </div><!-- /app -->
 
 <script src="content.js"></script>
+<script src="gut_checks_live.js"></script>
 <script>
 
-// ══ TAB REGISTRY ══
-const TABS = [
-  { id:'pulse',       label:'Market Pulse',      icon:'📊', bg:'#fff8e8', dot:'g' },
-  { id:'exec',        label:'Executive',         icon:'⚡', bg:'#e8f5ee', dot:'n' },
-  { id:'macro',       label:'World Macro',       icon:'🌍', bg:'#e8eaf5', dot:'n' },
-  { id:'mag7',        label:'Mag7',              icon:'M7', bg:'#f3e5f5', dot:'g' },
-  { id:'theses',      label:'Six Theses',        icon:'6T', bg:'#e8f5ee', dot:'a' },
-  { id:'discoveries', label:'Discoveries',       icon:'🔍', bg:'#fff3e0', dot:'n' },
-  { id:'aitrade',     label:'AI Trade',          icon:'AI', bg:'#e3f2fd', dot:'g' },
-  { id:'semis',       label:'Semis Intel',       icon:'⚙', bg:'#fce4ec', dot:'a'  },
-  { id:'risers',      label:'Rising Stars',      icon:'★',  bg:'#fff9c4', dot:'n' },
-  { id:'glossary',    label:'Glossary',          icon:'📖', bg:'#f5f5f5', dot:'n' }
-];
+// ── NAVIGATION ──
+function isMobile() { return window.innerWidth <= 700; }
 
-// ══ NAVIGATION ══
-function showTab(id, btn) {
-  // desktop
+function show(id, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   if (btn) btn.classList.add('on');
   window.scrollTo(0,0);
-}
-
-function goGloss() {
-  // desktop
-  const btn = document.querySelector('.nb:last-child');
-  showTab('glossary', btn);
-  // mobile
-  openMobTab('glossary');
-}
-
-// mobile tab open
-function openMobTab(id) {
-  const launcher = document.getElementById('mob-launcher');
-  const content  = document.getElementById('mob-content');
-  const topBar   = document.getElementById('mob-top');
-  const tab = TABS.find(t => t.id === id);
-
-  // copy rendered HTML from desktop panel
-  const src = document.getElementById(id);
-  content.innerHTML = src ? src.innerHTML : '<p style="padding:20px;color:var(--ink-light);">Loading…</p>';
-  content.classList.add('show');
-  launcher.classList.add('hidden');
-
-  // swap top bar to back-button mode
-  topBar.innerHTML = `
-    <button class="mob-back" onclick="closeMobTab()">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      <span>${tab ? tab.label : id}</span>
-    </button>
-    <div style="text-align:right;">
-      <div class="mob-top-rate" id="mob-rate2">—</div>
-    </div>`;
-  const r2 = document.getElementById('mob-rate2');
-  if (r2 && BRIEF && BRIEF.meta) {
-    const dir = BRIEF.meta.eurusd_direction;
-    const arrow = dir==='rising'?'↑':dir==='falling'?'↓':'→';
-    const col = dir==='rising'?'#7ec8a0':dir==='falling'?'#e87070':BRIEF.meta.eurusd;
-    r2.textContent = BRIEF.meta.eurusd + ' ' + arrow;
-    r2.style.color = col;
+  if (isMobile()) {
+    var launcher = document.getElementById('mob-launcher');
+    var backBar = document.getElementById('mob-back');
+    if (launcher) launcher.style.display = 'none';
+    if (backBar) { backBar.style.display = 'flex'; }
+    var sec = document.getElementById('mob-back-section');
+    if (sec && btn) sec.textContent = btn.textContent.replace(/^[●◈◎▲⬡◉⬢◧★📖⚡\s]+/, '').trim();
   }
+}
+
+function mobShow(id, label) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  var el = document.getElementById(id);
+  if (el) el.classList.add('on');
+  var launcher = document.getElementById('mob-launcher');
+  var backBar = document.getElementById('mob-back');
+  if (launcher) launcher.style.display = 'none';
+  if (backBar) backBar.style.display = 'flex';
+  var sec = document.getElementById('mob-back-section');
+  if (sec) sec.textContent = label;
   window.scrollTo(0,0);
 }
 
-function closeMobTab() {
-  const launcher = document.getElementById('mob-launcher');
-  const content  = document.getElementById('mob-content');
-  const topBar   = document.getElementById('mob-top');
-
-  content.classList.remove('show');
-  content.innerHTML = '';
-  launcher.classList.remove('hidden');
-
-  // restore launcher top bar
-  renderMobTopBar();
+function mobHome() {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  var launcher = document.getElementById('mob-launcher');
+  var backBar = document.getElementById('mob-back');
+  if (launcher) launcher.style.display = 'flex';
+  if (backBar) backBar.style.display = 'none';
   window.scrollTo(0,0);
 }
-
-function renderMobTopBar() {
-  const topBar = document.getElementById('mob-top');
-  if (!topBar) return;
-  const m = (typeof BRIEF !== 'undefined') ? BRIEF.meta : null;
-  const dir = m ? m.eurusd_direction : 'stable';
-  const arrow = dir==='rising'?'↑':dir==='falling'?'↓':'→';
-  const col = dir==='rising'?'#7ec8a0':dir==='falling'?'#e87070':'var(--gold-light)';
-  topBar.innerHTML = `
-    <div>
-      <div class="mob-top-title">The Investment Brief</div>
-      <div class="mob-top-date">${m ? m.date.toUpperCase() : '—'}</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="mob-top-rate" style="color:${col};">${m ? m.eurusd + ' ' + arrow : '—'}</div>
-    </div>`;
+function goGloss() {
+  if (isMobile()) { mobShow('glossary', 'Glossary'); }
+  else { show('glossary', document.querySelectorAll('.nb')[11]); }
 }
 
-function buildMobGrid() {
-  const grid = document.getElementById('mob-grid');
-  if (!grid) return;
-  grid.innerHTML = TABS.map(t => `
-    <div class="mob-cell" onclick="openMobTab('${t.id}')">
-      <div class="mob-icon" style="background:${t.bg};">${t.icon}</div>
-      <div class="mob-label">${t.label}</div>
-      <div class="mob-dot dot-${t.dot}"></div>
-    </div>`).join('');
-}
-
-// ══ HELPERS ══
+// ── HELPERS ──
 function tag(cls, text) { return `<span class="${cls}">${text}</span>`; }
 function badge(verdict) {
   const map = { BUY:'v-buy', HOLD:'v-hold', WATCH:'v-watch', CAUTION:'v-caution' };
@@ -599,8 +739,8 @@ function discTag(t) {
   const map = { BULL:'dt-bull', BEAR:'dt-bear', WATCH:'dt-watch', NEUTRAL:'dt-neutral' };
   return `<span class="d-tag ${map[t]||'dt-neutral'}">${t}</span>`;
 }
-function statusTag(s) {
-  const cls = 's-' + s.toLowerCase().replace(' ','');
+function statusTag(s, prefix='s-') {
+  const cls = prefix + s.toLowerCase().replace(' ','');
   return `<span class="t-status ${cls}">${s}</span>`;
 }
 function thStatusTag(s) {
@@ -616,7 +756,7 @@ function mtClass(t) {
   return m[t] || 'mt-a';
 }
 
-// ══ RENDER MASTHEAD ══
+// ── RENDER MASTHEAD ──
 function renderMast() {
   const m = BRIEF.meta;
   document.getElementById('h-rate').textContent = 'EUR/USD ' + m.eurusd;
@@ -633,9 +773,35 @@ function renderMast() {
   document.getElementById('b-detail').textContent = m.eurusd_driver + '. ' + m.eurusd_outlook;
   document.getElementById('b-outlook').textContent = outLabels[dir] || '—';
   document.getElementById('b-range').textContent = m.eurusd_weekly_change + ' this week';
+
+  // Mobile top bar
+  var arrows2 = { rising:'↑', falling:'↓', stable:'→' };
+  var mobRateEl = document.getElementById('mob-rate');
+  if (mobRateEl) {
+    mobRateEl.textContent = m.eurusd + ' ' + (arrows2[dir] || '→');
+    mobRateEl.className = 'mob-bar-rate-val mob-rate-' + dir;
+  }
+
+  // Mobile tile subtitles
+  var pSub = document.getElementById('msub-pulse');
+  if (pSub && BRIEF.vitals) pSub.textContent = 'VIX ' + BRIEF.vitals.vix.value + ' · F&G ' + BRIEF.vitals.fear_greed.value;
+  var aiSub = document.getElementById('msub-ai');
+  if (aiSub && BRIEF.ai_trade) aiSub.textContent = BRIEF.ai_trade.status + ' · 5 signals';
+  var rSub = document.getElementById('msub-risers');
+  if (rSub && BRIEF.risers) rSub.textContent = BRIEF.risers.length === 0 ? 'No candidates' : BRIEF.risers.length + ' candidates';
+  var m7Sub = document.getElementById('msub-mag7');
+  if (m7Sub && BRIEF.mag7) {
+    var buys = BRIEF.mag7.filter(s => s.verdict === 'BUY').length;
+    m7Sub.textContent = buys + ' BUY · ' + (BRIEF.mag7.length - buys) + ' other';
+  }
+  var thSub = document.getElementById('msub-theses');
+  if (thSub && BRIEF.theses) {
+    var conf = BRIEF.theses.filter(t => t.status === 'CONFIRMED').length;
+    thSub.textContent = conf + ' confirmed · ' + (BRIEF.theses.length - conf) + ' other';
+  }
 }
 
-// ══ RENDER PULSE ══
+// ── RENDER PULSE ──
 function renderPulse() {
   const v = BRIEF.vitals;
   const r = BRIEF.regime;
@@ -666,8 +832,8 @@ function renderPulse() {
         <div class="vital-sub">${v.put_call.label} · was ${v.put_call.last_week} last week</div>
         <div class="vital-explain">${v.put_call.interpretation}</div>
       </div>
-    </div>
-    <div class="sr"><h2>Market Regime</h2><span class="sub">The narrative investors are telling themselves</span></div>
+    </div>`;
+  html += `<div class="sr"><h2>Market Regime</h2><span class="sub">The narrative investors are telling themselves</span></div>
     <div class="regime">
       <div class="regime-label">Regime</div>
       <div>
@@ -678,38 +844,75 @@ function renderPulse() {
           ${r.headwinds.map(t => `<span class="rtag rt-r">✗ ${t}</span>`).join('')}
         </div>
       </div>
-    </div>
-    <div class="sr"><h2>Weekly Performance League</h2><span class="sub">Top 20 winners · Top 20 losers</span></div>
+    </div>`;
+  html += `<div class="sr"><h2>Weekly Performance League</h2><span class="sub">Top 20 winners · Top 20 losers</span></div>
     <div class="league-wrap">
       <div class="ltable">
         <div class="lthead"><h3>▲ Top 20 Winners</h3><span style="font-family:var(--mono);font-size:9px;color:var(--ink-light);">weekly %</span></div>
         <div class="lscroll">
-          ${BRIEF.league.winners.map(w=>`<div class="lrow"><div class="lr-rank">${w.rank}</div><div><div class="lr-name">${w.name}</div><div class="lr-sec">${w.sector}</div></div><div class="lr-bar win-b" style="width:${Math.max(4,40-w.rank*1.5)}px"></div><div class="lr-pct up">${w.change}</div></div>`).join('')}
+          ${BRIEF.league.winners.map(w => `
+            <div class="lrow">
+              <div class="lr-rank">${w.rank}</div>
+              <div><div class="lr-name">${w.name}</div><div class="lr-sec">${w.sector}</div></div>
+              <div class="lr-bar win-b" style="width:${Math.max(4, 40 - w.rank*1.5)}px"></div>
+              <div class="lr-pct up">${w.change}</div>
+            </div>`).join('')}
         </div>
       </div>
       <div class="ltable">
         <div class="lthead"><h3>▼ Top 20 Losers</h3><span style="font-family:var(--mono);font-size:9px;color:var(--ink-light);">weekly %</span></div>
         <div class="lscroll">
-          ${BRIEF.league.losers.map(w=>`<div class="lrow"><div class="lr-rank">${w.rank}</div><div><div class="lr-name">${w.name}</div><div class="lr-sec">${w.sector}</div></div><div class="lr-bar los-b" style="width:${Math.max(4,40-w.rank*1.5)}px"></div><div class="lr-pct dn">${w.change}</div></div>`).join('')}
+          ${BRIEF.league.losers.map(w => `
+            <div class="lrow">
+              <div class="lr-rank">${w.rank}</div>
+              <div><div class="lr-name">${w.name}</div><div class="lr-sec">${w.sector}</div></div>
+              <div class="lr-bar los-b" style="width:${Math.max(4, 40 - w.rank*1.5)}px"></div>
+              <div class="lr-pct dn">${w.change}</div>
+            </div>`).join('')}
         </div>
       </div>
-    </div>
-    <div class="sr"><h2>Sector Rotation</h2><span class="sub">Where is the money moving?</span></div>
+    </div>`;
+  html += `<div class="sr"><h2>Sector Rotation</h2><span class="sub">Where is the money moving?</span></div>
     <div class="sec-grid">
-      ${BRIEF.sectors.map(s=>{const bg=s.direction==='up'?'var(--green-light)':s.direction==='down'?'var(--red-light)':'var(--paper-dark)';const col=s.direction==='up'?'var(--green)':s.direction==='down'?'var(--red)':'var(--ink-light)';return`<div class="sec-cell"><div class="sec-bg" style="background:${bg}"></div><div class="sec-name" style="color:${col}">${s.name}</div><div class="sec-pct" style="color:${col}">${s.change}</div><div class="sec-driver">${s.driver}</div></div>`;}).join('')}
-    </div>
-    <div class="sr"><h2>Where the Money Is Going</h2><span class="sub">Weekly institutional fund flows</span></div>
+      ${BRIEF.sectors.map(s => {
+        const bg = s.direction === 'up' ? 'var(--green-light)' : s.direction === 'down' ? 'var(--red-light)' : 'var(--paper-dark)';
+        const col = s.direction === 'up' ? 'var(--green)' : s.direction === 'down' ? 'var(--red)' : 'var(--ink-light)';
+        return `<div class="sec-cell">
+          <div class="sec-bg" style="background:${bg}"></div>
+          <div class="sec-name" style="color:${col}">${s.name}</div>
+          <div class="sec-pct" style="color:${col}">${s.change}</div>
+          <div class="sec-driver">${s.driver}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  html += `<div class="sr"><h2>Where the Money Is Going</h2><span class="sub">Weekly institutional fund flows</span></div>
     <div class="flows-grid">
-      ${BRIEF.flows.map(f=>`<div class="flow-card"><div class="flow-label">${f.label}</div><div class="flow-amount ${f.direction==='in'?'in-color':'out-color'}">${f.amount}</div><div class="flow-dir ${f.direction==='in'?'in-color':'out-color'}">${f.direction==='in'?'Inflows':'Outflows'} this week</div><div class="flow-bar-w"><div class="flow-bar ${f.direction==='in'?'bar-in':'bar-out'}" style="width:${f.pct}%"></div></div><div class="flow-note">${f.note}</div></div>`).join('')}
-    </div>
-    <div class="sr"><h2>Trends Shaping the World</h2><span class="sub">Structural forces · confirmed or weakened this week</span></div>
+      ${BRIEF.flows.map(f => `
+        <div class="flow-card">
+          <div class="flow-label">${f.label}</div>
+          <div class="flow-amount ${f.direction === 'in' ? 'in-color' : 'out-color'}">${f.amount}</div>
+          <div class="flow-dir ${f.direction === 'in' ? 'in-color' : 'out-color'}">${f.direction === 'in' ? 'Inflows' : 'Outflows'} this week</div>
+          <div class="flow-bar-w"><div class="flow-bar ${f.direction === 'in' ? 'bar-in' : 'bar-out'}" style="width:${f.pct}%"></div></div>
+          <div class="flow-note">${f.note}</div>
+        </div>`).join('')}
+    </div>`;
+  html += `<div class="sr"><h2>Trends Shaping the World</h2><span class="sub">Structural forces · confirmed or weakened this week</span></div>
     <div class="trend-list">
-      ${BRIEF.trends.map(t=>`<div class="trend-item"><div class="t-num">${t.num}</div><div><div class="t-title">${t.title}</div><div class="t-detail">${t.detail}</div><div class="t-evidence">${t.evidence}</div></div>${statusTag(t.status)}</div>`).join('')}
+      ${BRIEF.trends.map(t => `
+        <div class="trend-item">
+          <div class="t-num">${t.num}</div>
+          <div>
+            <div class="t-title">${t.title}</div>
+            <div class="t-detail">${t.detail}</div>
+            <div class="t-evidence">${t.evidence}</div>
+          </div>
+          ${statusTag(t.status)}
+        </div>`).join('')}
     </div>`;
   document.getElementById('pulse').innerHTML = html;
 }
 
-// ══ RENDER EXEC ══
+// ── RENDER EXEC ──
 function renderExec() {
   const e = BRIEF.executive;
   let html = `
@@ -721,12 +924,12 @@ function renderExec() {
       <div class="ec blue"><div class="ec-label">Macro Pulse</div><div class="ec-body"><span class="ec-name">${e.macro_pulse.name}</span> — ${e.macro_pulse.observation}</div></div>
     </div>
     <div class="macro-tags">
-      ${e.tags.map(t=>`<span class="mt ${mtClass(t.type)}">${t.label}</span>`).join('')}
+      ${e.tags.map(t => `<span class="mt ${mtClass(t.type)}">${t.label}</span>`).join('')}
     </div>`;
   document.getElementById('exec').innerHTML = html;
 }
 
-// ══ RENDER MACRO ══
+// ── RENDER MACRO ──
 function renderMacro() {
   const m = BRIEF.macro;
   let html = `
@@ -741,7 +944,7 @@ function renderMacro() {
   document.getElementById('macro').innerHTML = html;
 }
 
-// ══ RENDER MAG7 ══
+// ── RENDER MAG7 ──
 function renderMag7() {
   let html = `
     <div class="sr"><h2>Magnificent Seven Scorecard</h2><span class="sub">All 7 · earnings dates colour-coded</span></div>
@@ -753,63 +956,87 @@ function renderMag7() {
     </p>
     <div class="mag-grid">`;
   BRIEF.mag7.forEach(s => {
-    html += `<div class="mc">
-      <div class="mc-head">
-        <div><div class="mc-name">${s.name}</div><div class="mc-ticker">${s.ticker} · USD</div></div>
-        <div><div class="mc-price">${s.price}</div><div class="mc-change ${s.change.startsWith('+')?'up':'dn'}">${s.change}</div></div>
-      </div>
-      <div class="mc-row"><span>P/E</span><span>${s.pe} <span style="font-size:10px;color:var(--ink-light);">[${s.pe_plain}]</span></span></div>
-      <div class="mc-row"><span>Analyst target</span><span>${s.target}</span></div>
-      <div class="mc-row"><span>Theme</span><span>${s.theme}</span></div>
-      <div class="mc-earn"><span class="earn-label">Next earnings</span><span class="earn-date ${earnClass(s.earnings_proximity)}">${s.earnings}</span></div>
-      <div class="mc-news">${s.news}</div>
-      ${badge(s.verdict)}
-      <div style="font-size:11px;color:var(--ink-light);margin-top:4px;">${s.verdict_reason}</div>
-    </div>`;
+    html += `
+      <div class="mc">
+        <div class="mc-head">
+          <div><div class="mc-name">${s.name}</div><div class="mc-ticker">${s.ticker} · USD</div></div>
+          <div><div class="mc-price">${s.price}</div><div class="mc-change ${s.change.startsWith('+') ? 'up' : 'dn'}">${s.change}</div></div>
+        </div>
+        <div class="mc-row"><span>P/E</span><span>${s.pe} <span style="font-size:10px;color:var(--ink-light);">[${s.pe_plain}]</span></span></div>
+        <div class="mc-row"><span>Analyst target</span><span>${s.target}</span></div>
+        <div class="mc-row"><span>Theme</span><span>${s.theme}</span></div>
+        <div class="mc-earn">
+          <span class="earn-label">Next earnings</span>
+          <span class="earn-date ${earnClass(s.earnings_proximity)}">${s.earnings}</span>
+        </div>
+        <div class="mc-news">${s.news}</div>
+        ${badge(s.verdict)}
+        <div style="font-size:11px;color:var(--ink-light);margin-top:4px;">${s.verdict_reason}</div>
+      </div>`;
   });
   html += `</div>`;
   document.getElementById('mag7').innerHTML = html;
 }
 
-// ══ RENDER THESES ══
+// ── RENDER THESES ──
 function renderTheses() {
   let html = `
     <div class="sr"><h2>Your Six Investment Theses</h2><span class="sub">Weekly integrity check</span></div>
     <p style="font-size:12px;color:var(--ink-light);margin-bottom:16px;font-style:italic;">Click each theme to expand.</p>`;
   BRIEF.theses.forEach((t, i) => {
-    html += `<div class="thesis-block">
-      <div class="th-head" onclick="toggleThesis(this)">
-        <h3>${t.num} ${t.title}</h3>
-        ${thStatusTag(t.status)}
-      </div>
-      <div class="th-body ${i===0?'open':''}">
-        <div class="th-evidence">This week: ${t.evidence}</div>
-        <div class="th-items">
-          ${t.highlights.map(h=>`<div class="th-item"><div class="th-ihead"><span class="th-iname">${h.name}</span><span class="th-ichange ${h.change.startsWith('+')?'up':'dn'}">${h.change}</span></div><div class="th-inote">${h.note}</div></div>`).join('')}
+    html += `
+      <div class="thesis-block">
+        <div class="th-head" onclick="toggleThesis(this)">
+          <h3>${t.num} ${t.title}</h3>
+          ${thStatusTag(t.status)}
         </div>
-      </div>
-    </div>`;
+        <div class="th-body ${i === 0 ? 'open' : ''}">
+          <div class="th-evidence">This week: ${t.evidence}</div>
+          <div class="th-items">
+            ${t.highlights.map(h => `
+              <div class="th-item">
+                <div class="th-ihead">
+                  <span class="th-iname">${h.name}</span>
+                  <span class="th-ichange ${h.change.startsWith('+') ? 'up' : 'dn'}">${h.change}</span>
+                </div>
+                <div class="th-inote">${h.note}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>`;
   });
   document.getElementById('theses').innerHTML = html;
 }
 
-// ══ RENDER DISCOVERIES ══
+// ── RENDER DISCOVERIES ──
 function renderDiscoveries() {
-  let html = `<div class="sr"><h2>8 Things Worth Knowing This Week</h2><span class="sub">Curated from 125 instruments</span></div><div class="disc-list">`;
+  let html = `
+    <div class="sr"><h2>8 Things Worth Knowing This Week</h2><span class="sub">Curated from 125 instruments</span></div>
+    <div class="disc-list">`;
   BRIEF.discoveries.forEach(d => {
-    html += `<div class="disc-item"><div class="d-num">${d.num}</div><div><div class="d-stock">${d.company} · ${d.sector}</div><div class="d-headline">${d.headline}</div><div class="d-detail">${d.detail}</div></div>${discTag(d.tag)}</div>`;
+    html += `
+      <div class="disc-item">
+        <div class="d-num">${d.num}</div>
+        <div>
+          <div class="d-stock">${d.company} · ${d.sector}</div>
+          <div class="d-headline">${d.headline}</div>
+          <div class="d-detail">${d.detail}</div>
+        </div>
+        ${discTag(d.tag)}
+      </div>`;
   });
   html += `</div>`;
   document.getElementById('discoveries').innerHTML = html;
 }
 
-// ══ RENDER AI TRADE ══
+// ── RENDER AI TRADE INTEGRITY ──
 function renderAITrade() {
   const d = BRIEF.ai_trade;
-  if (!d) { document.getElementById('aitrade').innerHTML = '<div class="sr"><h2>AI Trade Integrity</h2></div>'; return; }
+  if (!d) { document.getElementById('aitrade').innerHTML = '<div class="sr"><h2>AI Trade Integrity</h2><span class="sub">No data yet.</span></div>'; return; }
   const sc = { INTACT:'green', CAUTION:'amber', STRESS:'red' };
   const sdesc = { INTACT:'No regime-change signals this week.', CAUTION:'1–2 indicators flagged — monitor closely.', STRESS:'Multiple indicators flagged.' };
-  let html = `<div class="sr"><h2>AI Trade Integrity</h2><span class="sub">5 leading macro indicators</span></div>
+  let html = `
+    <div class="sr"><h2>AI Trade Integrity</h2><span class="sub">5 leading macro indicators</span></div>
     <div class="ind-panel">
       <div class="ind-status-bar">
         <span class="ind-status-label">Overall status</span>
@@ -818,24 +1045,32 @@ function renderAITrade() {
       </div>`;
   d.indicators.forEach(ind => {
     const sc2 = ind.signal==='GREEN'?'green':ind.signal==='AMBER'?'amber':'red';
-    const blank = (!ind.finding||ind.finding==='—');
-    html += `<div class="ind-row"><div>
-      <div class="ind-label">${ind.label}<span class="itip"><span class="itip-icon">i</span><span class="itip-box">${ind.info}</span></span></div>
-      ${blank?'<div class="ind-clear">No change this week</div>':`<div class="ind-finding">${ind.finding}</div><div class="ind-impl">→ ${ind.implication}</div>`}
-    </div><div style="padding-top:2px;"><span class="sig sig-${sc2}">${ind.signal}</span></div></div>`;
+    const blank = (ind.finding==='—'||!ind.finding);
+    html += `
+      <div class="ind-row">
+        <div>
+          <div class="ind-label">${ind.label}
+            <span class="itip"><span class="itip-icon">i</span><span class="itip-box">${ind.info}</span></span>
+          </div>
+          ${blank ? '<div class="ind-clear">No change this week</div>'
+            : `<div class="ind-finding">${ind.finding}</div><div class="ind-impl">→ ${ind.implication}</div>`}
+        </div>
+        <div style="padding-top:2px;"><span class="sig sig-${sc2}">${ind.signal}</span></div>
+      </div>`;
   });
   html += `</div>`;
   document.getElementById('aitrade').innerHTML = html;
 }
 
-// ══ RENDER SEMIS ══
+// ── RENDER SEMIS INTELLIGENCE ──
 function renderSemisIntel() {
   const d = BRIEF.semis;
-  if (!d) { document.getElementById('semis').innerHTML = '<div class="sr"><h2>Semis Intelligence</h2></div>'; return; }
+  if (!d) { document.getElementById('semis').innerHTML = '<div class="sr"><h2>Semis Intelligence</h2><span class="sub">No data yet.</span></div>'; return; }
   const flags = { Korea:'🇰🇷', Japan:'🇯🇵', 'China / Taiwan':'🇨🇳', USA:'🇺🇸' };
   const sc = { CLEAR:'green', WATCH:'amber', ALERT:'red' };
   const sdesc = { CLEAR:'All regions stable.', WATCH:'Developing situations — monitor.', ALERT:'Active disruption signals.' };
-  let html = `<div class="sr"><h2>Semis Intelligence</h2><span class="sub">Supply chain · Pricing · Geography</span></div>
+  let html = `
+    <div class="sr"><h2>Semis Intelligence</h2><span class="sub">Supply chain · Pricing · Geography</span></div>
     <div class="ind-panel">
       <div class="ind-status-bar">
         <span class="ind-status-label">Overall status</span>
@@ -844,26 +1079,48 @@ function renderSemisIntel() {
       </div>`;
   d.regions.forEach(r => {
     const sc2 = r.signal==='GREEN'?'green':r.signal==='AMBER'?'amber':'red';
-    const blank = (!r.finding||r.finding==='—');
-    html += `<div class="geo-row"><div class="geo-flag">${flags[r.region]||'🌐'}</div>
-      <div><div class="geo-label"><b>${r.region}</b><span class="itip"><span class="itip-icon">i</span><span class="itip-box">${r.info}</span></span></div>
-      ${blank?'<div class="ind-clear">No material developments this week</div>':`<div class="ind-finding">${r.finding}</div><div class="ind-impl">→ ${r.implication}</div>`}</div>
-      <div style="padding-top:2px;"><span class="sig sig-${sc2}">${r.signal}</span></div></div>`;
+    const blank = (r.finding==='—'||!r.finding);
+    html += `
+      <div class="geo-row">
+        <div class="geo-flag">${flags[r.region]||'🌐'}</div>
+        <div>
+          <div class="geo-label"><b>${r.region}</b>
+            <span class="itip"><span class="itip-icon">i</span><span class="itip-box">${r.info}</span></span>
+          </div>
+          ${blank ? '<div class="ind-clear">No material developments this week</div>'
+            : `<div class="ind-finding">${r.finding}</div><div class="ind-impl">→ ${r.implication}</div>`}
+        </div>
+        <div style="padding-top:2px;"><span class="sig sig-${sc2}">${r.signal}</span></div>
+      </div>`;
   });
-  html += `</div><div class="sr" style="margin-top:28px;"><h3 style="font-family:var(--serif);font-size:15px;font-weight:400;font-style:italic;">Moat Watch — New Entrants</h3></div><div class="moat-grid">`;
+  html += `</div>
+    <div class="sr" style="margin-top:28px;"><h3 style="font-size:15px;">Moat Watch — New Entrants</h3></div>
+    <div class="moat-grid">`;
   d.moat_watch.forEach(m => {
     const sc2 = m.signal==='GREEN'?'green':m.signal==='AMBER'?'amber':'red';
-    const blank = (!m.finding||m.finding==='—');
-    html += `<div class="moat-row"><div class="moat-matchup"><div class="moat-incumbent">${m.incumbent}</div><div class="moat-vs">vs</div><div class="moat-challenger">${m.challenger}</div></div>
-      <div><div class="moat-domain">${m.domain}<span class="itip"><span class="itip-icon">i</span><span class="itip-box">${m.info}</span></span></div>
-      ${blank?'<div class="ind-clear">Moat intact — no challenger progress</div>':`<div class="ind-finding">${m.finding}</div><div class="ind-impl">→ ${m.implication}</div>`}</div>
-      <div style="padding-top:2px;"><span class="sig sig-${sc2}">${m.signal}</span></div></div>`;
+    const blank = (m.finding==='—'||!m.finding);
+    html += `
+      <div class="moat-row">
+        <div class="moat-matchup">
+          <div class="moat-incumbent">${m.incumbent}</div>
+          <div class="moat-vs">vs</div>
+          <div class="moat-challenger">${m.challenger}</div>
+        </div>
+        <div>
+          <div class="moat-domain">${m.domain}
+            <span class="itip"><span class="itip-icon">i</span><span class="itip-box">${m.info}</span></span>
+          </div>
+          ${blank ? '<div class="ind-clear">Moat intact — no challenger progress</div>'
+            : `<div class="ind-finding">${m.finding}</div><div class="ind-impl">→ ${m.implication}</div>`}
+        </div>
+        <div style="padding-top:2px;"><span class="sig sig-${sc2}">${m.signal}</span></div>
+      </div>`;
   });
   html += `</div>`;
   document.getElementById('semis').innerHTML = html;
 }
 
-// ══ RENDER RISING STARS ══
+// ── RENDER RISING STARS ──
 function renderRisers() {
   const stars = BRIEF.risers;
   if (!stars || stars.length === 0) {
@@ -872,47 +1129,58 @@ function renderRisers() {
       <div class="scout-empty">No candidates met all criteria this week — threshold: $2B–$30B market cap, direct supplier or platform proximity, concrete 6–18 month catalyst, global universe.</div>`;
     return;
   }
-  function proxCls(p) { if (!p) return 'spp-adjacent'; const s=p.toLowerCase(); if(s.includes('direct')) return 'spp-direct'; if(s.includes('platform')) return 'spp-platform'; return 'spp-adjacent'; }
-  function thesisCls(t) { return (t&&t.toUpperCase().includes('BLIND'))?'stp-blind':'stp-thesis'; }
-  function chgCls(c) { return (c&&c.trim()[0]==='-')?'dn':'up'; }
-  let html = `<div class="sr"><h2>★ Rising Stars</h2><span class="sub">Top ${stars.length} this week</span></div><div class="scout-grid">`;
-  stars.forEach((s,i) => {
-    html += `<div class="scout-card"><div class="scout-head">
-      <span class="scout-rank">${String(i+1).padStart(2,'0')}</span>
-      <span class="scout-thesis-pill ${thesisCls(s.thesis)}">${s.thesis||'Thesis'}</span>
-      <span class="scout-prox-pill ${proxCls(s.proximity)}">${s.proximity||'Adjacent'}</span>
-      <span class="scout-chg ${chgCls(s.weekly_change)}">${s.weekly_change||'—'} this wk</span>
-    </div><div class="scout-body">
-      <div class="scout-name">${s.name}</div>
-      <div class="scout-meta">${s.ticker} · ${s.exchange} · ${s.market_cap}</div>
-      <div class="scout-why">${s.why}</div>
-      <div class="scout-catalyst-box"><div class="scout-catalyst-lbl">Catalyst — why now</div><div class="scout-catalyst-txt">${s.catalyst}</div></div>
-      <div class="scout-chips">
-        <div class="scout-chip"><div class="scout-chip-lbl">Revenue growth</div><div class="scout-chip-val">${s.revenue_growth||'—'}</div></div>
-        <div class="scout-chip"><div class="scout-chip-lbl">Analyst coverage</div><div class="scout-chip-val">${s.analyst_coverage||'—'}</div></div>
-      </div>
-      <div class="scout-killer"><b>What kills this:</b> ${s.thesis_killer||'—'}</div>
-    </div></div>`;
+  function proxCls(p) { if (!p) return 'spp-adjacent'; const s = p.toLowerCase(); if (s.includes('direct')) return 'spp-direct'; if (s.includes('platform')) return 'spp-platform'; return 'spp-adjacent'; }
+  function thesisCls(t) { return (t && t.toUpperCase().includes('BLIND')) ? 'stp-blind' : 'stp-thesis'; }
+  function chgCls(c) { return (c && c.trim()[0] === '-') ? 'dn' : 'up'; }
+  let html = `
+    <div class="sr"><h2>★ Rising Stars</h2><span class="sub">Top ${stars.length} this week</span></div>
+    <div class="scout-grid">`;
+  stars.forEach((s, i) => {
+    html += `
+      <div class="scout-card">
+        <div class="scout-head">
+          <span class="scout-rank">${String(i+1).padStart(2,'0')}</span>
+          <span class="scout-thesis-pill ${thesisCls(s.thesis)}">${s.thesis || 'Thesis'}</span>
+          <span class="scout-prox-pill ${proxCls(s.proximity)}">${s.proximity || 'Adjacent'}</span>
+          <span class="scout-chg ${chgCls(s.weekly_change)}">${s.weekly_change || '—'} this wk</span>
+        </div>
+        <div class="scout-body">
+          <div class="scout-name">${s.name}</div>
+          <div class="scout-meta">${s.ticker} · ${s.exchange} · ${s.market_cap}</div>
+          <div class="scout-why">${s.why}</div>
+          <div class="scout-catalyst-box">
+            <div class="scout-catalyst-lbl">Catalyst — why now</div>
+            <div class="scout-catalyst-txt">${s.catalyst}</div>
+          </div>
+          <div class="scout-chips">
+            <div class="scout-chip"><div class="scout-chip-lbl">Revenue growth</div><div class="scout-chip-val">${s.revenue_growth || '—'}</div></div>
+            <div class="scout-chip"><div class="scout-chip-lbl">Analyst coverage</div><div class="scout-chip-val">${s.analyst_coverage || '—'}</div></div>
+          </div>
+          <div class="scout-killer"><b>What kills this:</b> ${s.thesis_killer || '—'}</div>
+        </div>
+      </div>`;
   });
   html += `</div>`;
   document.getElementById('risers').innerHTML = html;
 }
 
-// ══ RENDER GLOSSARY ══
+// ── RENDER GLOSSARY ──
 function renderGlossary() {
   const terms = [
-    { term:"Fear & Greed Index", what:"A single number between 0 and 100 that captures how emotional the market is right now. It combines seven signals — stock momentum, safe haven demand, options positioning, junk bond appetite — and distils them into one reading.", story:"<b>The dinner party test:</b> When your dentist, taxi driver, and neighbour are all excitedly telling you which stocks they bought, the Fear & Greed Index is probably above 80. That's when to be careful. When those same people are terrified and selling, the index drops below 20 — historically the best buying opportunity.", signal:"<b>Below 25</b> = extreme fear · historically a buy signal · <b>Above 75</b> = extreme greed · caution signal · Long-run average ~50" },
-    { term:"VIX — Volatility Index", what:"Measures how much the market expects stocks to swing up or down over the next 30 days. Calculated from options prices — the financial equivalent of insurance against a crash.", story:"<b>Think of it as weather forecasting:</b> VIX of 15 is a clear blue sky. VIX of 30 is storm warnings flashing. VIX of 80 (March 2020 COVID) is a full hurricane alert. The paradox: when VIX is highest, it's often the best long-term buying opportunity.", signal:"<b>Below 15</b> = calm · <b>15–25</b> = normal · <b>Above 30</b> = fear · <b>Above 50</b> = crisis · Long-run avg ~19" },
-    { term:"Put/Call Ratio", what:"Options are financial bets on direction. A 'put' bets a stock falls; a 'call' bets it rises. The ratio counts how many fall-bets versus rise-bets.", story:"<b>The contrarian crowd:</b> When 90% of fans have already bet against Team A, who is left to sell? When everyone has already hedged, any positive surprise causes an explosive reversal. Put/call above 1.2 = historically a bounce is coming.", signal:"<b>Below 0.7</b> = extreme optimism (warning) · <b>0.7–1.0</b> = neutral · <b>Above 1.2</b> = extreme pessimism (contrarian buy signal)" },
-    { term:"P/E Ratio", what:"Share price ÷ annual profit per share. How many years of current profit you pay to own the company.", story:"<b>The coffee shop:</b> A shop earns €50,000/year. Owner wants €1 million. That's a P/E of 20 — 20 years of current earnings. Is that cheap? Depends on whether it's growing.", signal:"<b>Below 15×</b> = cheap · <b>15–25×</b> = fair · <b>Above 30×</b> = growth premium · <b>Above 50×</b> = speculation" },
-    { term:"Free Cash Flow (FCF)", what:"The actual money a business generates and keeps after all costs and investments. Very hard to fake — it's cash that actually hit the bank account.", story:"<b>The law firm reality:</b> You bill €2M. After salaries, rent, taxes, office renovation — €180K lands in the bank. That's FCF. Amazon has temporarily negative FCF because it's building $200B in data centers. The underlying business is fine.", signal:"Positive FCF = healthy. Temporarily negative = investing in growth. Persistently negative = financially fragile." },
-    { term:"ARR — Annual Recurring Revenue", what:"The annualised value of all active subscription contracts. Already committed, already contracted — the most predictable revenue.", story:"<b>The retainer model:</b> A law firm with €2M in annual retainers has €2M of ARR — revenue that walks in before any new work. CrowdStrike's $4.2B ARR means $4.2B is already contracted regardless of new clients.", signal:"Net Revenue Retention above 120% = existing clients spending more — the best scenario for a subscription business." },
-    { term:"Fund Flows", what:"Weekly tracking of how much institutional money is moving into or out of asset classes. Published by EPFR Global.", story:"<b>The tide before the wave:</b> Fund flows are like watching the tide go out before a wave arrives. When $20B flows into European equities over three consecutive weeks, prices will follow — that money has to buy something.", signal:"Follow 3+ consecutive weeks of trend, not individual weeks. Three-week trends are signal. Single weeks can be noise." },
-    { term:"HBM — High Bandwidth Memory", what:"Specialised memory chips that feed data to AI processors fast enough for training large AI models.", story:"<b>The highway analogy:</b> A GPU is a high-performance engine. AI training requires feeding enormous data continuously. Standard DRAM is a country road. HBM is a 10-lane motorway. Every Nvidia H100 requires HBM chips stacked on top.", signal:"HBM price increases = direct revenue tailwind for Samsung/SK Hynix. AI capex growth ≈ HBM demand growth. Nearly perfectly correlated." },
-    { term:"TAM — Total Addressable Market", what:"The total revenue a company could earn if it captured 100% of its target market.", story:"<b>The restaurant expansion:</b> A great pizza restaurant earns €1M/year locally. National TAM = €500M. International TAM = €50B. Novo Nordisk's injectable GLP-1 had a TAM limited to injection-tolerant patients. An oral pill expands it to 2 billion people who'd take a daily pill.", signal:"Company at 1–5% of TAM = enormous runway. At 30%+ of TAM = growth will slow." },
-    { term:"FX Haircut (EUR/USD)", what:"When you own USD stocks but spend in EUR, currency movements affect your real return — even if the stock performs well.", story:"<b>The currency sandwich:</b> You buy Amazon at $240 using €220. Amazon rises 20% to $288. EUR/USD moves from 1.09 to 1.18. Your profit in euros: 11%, not 20%. Currency ate 9%.", signal:"EUR/USD trending toward 1.15–1.18 = 3–5% annual drag on USD positions. Deutsche Boerse (EUR-native) = zero FX exposure." }
+    { term: "Fear & Greed Index", what: "A single number between 0 and 100 that captures how emotional the market is right now. It combines seven signals — stock momentum, safe haven demand, options positioning, junk bond appetite — and distils them into one reading.", story: "<b>The dinner party test:</b> When your dentist, taxi driver, and neighbour are all excitedly telling you which stocks they bought, the Fear & Greed Index is probably above 80. That's when to be careful. When those same people are terrified and selling, the index drops below 20 — historically the best buying opportunity.", signal: "<b>Below 25</b> = extreme fear · historically a buy signal · <b>Above 75</b> = extreme greed · caution signal · Long-run average ~50" },
+    { term: "VIX — Volatility Index", what: "Measures how much the market expects stocks to swing up or down over the next 30 days. Calculated from options prices — the financial equivalent of insurance against a crash.", story: "<b>Think of it as weather forecasting:</b> VIX of 15 is a clear blue sky. VIX of 30 is storm warnings flashing. VIX of 80 (March 2020 COVID) is a full hurricane alert. The paradox: when VIX is highest, it's often the best long-term buying opportunity.", signal: "<b>Below 15</b> = calm · <b>15–25</b> = normal · <b>Above 30</b> = fear · <b>Above 50</b> = crisis · Long-run avg ~19" },
+    { term: "Put/Call Ratio", what: "Options are financial bets on direction. A 'put' bets a stock falls; a 'call' bets it rises. The ratio counts how many fall-bets versus rise-bets.", story: "<b>The contrarian crowd:</b> When 90% of fans have already bet against Team A, who is left to sell? When everyone has already hedged, any positive surprise causes an explosive reversal. Put/call above 1.2 = historically a bounce is coming.", signal: "<b>Below 0.7</b> = extreme optimism (warning) · <b>0.7–1.0</b> = neutral · <b>Above 1.2</b> = extreme pessimism (contrarian buy signal)" },
+    { term: "P/E Ratio", what: "Share price ÷ annual profit per share. How many years of current profit you pay to own the company.", story: "<b>The coffee shop:</b> A shop earns €50,000/year. Owner wants €1 million. That's a P/E of 20 — 20 years of current earnings. Is that cheap? Depends on whether it's growing.", signal: "<b>Below 15×</b> = cheap · <b>15–25×</b> = fair · <b>Above 30×</b> = growth premium · <b>Above 50×</b> = speculation" },
+    { term: "Free Cash Flow (FCF)", what: "The actual money a business generates and keeps after all costs and investments. Very hard to fake — it's cash that actually hit the bank account.", story: "<b>The law firm reality:</b> You bill €2M. After salaries, rent, taxes, office renovation — €180K lands in the bank. That's FCF. Amazon has temporarily negative FCF because it's building $200B in data centers. The underlying business is fine.", signal: "Positive FCF = healthy. Temporarily negative = investing in growth. Persistently negative = financially fragile." },
+    { term: "ARR — Annual Recurring Revenue", what: "The annualised value of all active subscription contracts. Already committed, already contracted — the most predictable revenue.", story: "<b>The retainer model:</b> A law firm with €2M in annual retainers has €2M of ARR — revenue that walks in before any new work. CrowdStrike's $4.2B ARR means $4.2B is already contracted regardless of new clients.", signal: "Net Revenue Retention above 120% = existing clients spending more — the best scenario for a subscription business." },
+    { term: "Fund Flows", what: "Weekly tracking of how much institutional money is moving into or out of asset classes. Published by EPFR Global.", story: "<b>The tide before the wave:</b> Fund flows are like watching the tide go out before a wave arrives. When $20B flows into European equities over three consecutive weeks, prices will follow — that money has to buy something.", signal: "Follow 3+ consecutive weeks of trend, not individual weeks. Three-week trends are signal. Single weeks can be noise." },
+    { term: "HBM — High Bandwidth Memory", what: "Specialised memory chips that feed data to AI processors fast enough for training large AI models.", story: "<b>The highway analogy:</b> A GPU is a high-performance engine. AI training requires feeding enormous data continuously. Standard DRAM is a country road. HBM is a 10-lane motorway. Every Nvidia H100 requires HBM chips stacked on top.", signal: "HBM price increases = direct revenue tailwind for Samsung/SK Hynix. AI capex growth ≈ HBM demand growth. Nearly perfectly correlated." },
+    { term: "TAM — Total Addressable Market", what: "The total revenue a company could earn if it captured 100% of its target market.", story: "<b>The restaurant expansion:</b> A great pizza restaurant earns €1M/year locally. National TAM = €500M. International TAM = €50B. Novo Nordisk's injectable GLP-1 had a TAM limited to injection-tolerant patients. An oral pill expands it to 2 billion people who'd take a daily pill.", signal: "Company at 1–5% of TAM = enormous runway. At 30%+ of TAM = growth will slow." },
+    { term: "FX Haircut (EUR/USD)", what: "When you own USD stocks but spend in EUR, currency movements affect your real return — even if the stock performs well.", story: "<b>The currency sandwich:</b> You buy Amazon at $240 using €220. Amazon rises 20% to $288. EUR/USD moves from 1.09 to 1.18. Your profit in euros: 11%, not 20%. Currency ate 9%.", signal: "EUR/USD trending toward 1.15–1.18 = 3–5% annual drag on USD positions. Deutsche Boerse (EUR-native) = zero FX exposure." }
   ];
-  let html = `<div class="sr"><h2>The Financial Dictionary</h2><span class="sub">Real-world stories · no legal language</span></div><div class="gloss-grid">`;
+  let html = `
+    <div class="sr"><h2>The Financial Dictionary</h2><span class="sub">Real-world stories · no legal language</span></div>
+    <div class="gloss-grid">`;
   terms.forEach(t => {
     html += `<div class="gc"><div class="gc-term">${t.term}</div><div class="gc-what">${t.what}</div><div class="gc-story">${t.story}</div><div class="gc-signal">${t.signal}</div></div>`;
   });
@@ -920,12 +1188,304 @@ function renderGlossary() {
   document.getElementById('glossary').innerHTML = html;
 }
 
-// ══ TOGGLE THESIS ══
+// ── TOGGLE THESIS ──
 function toggleThesis(header) {
   header.nextElementSibling.classList.toggle('open');
 }
 
-// ══ INIT ══
+// ── GUT CHECK ──
+function signalPillClass(signal) {
+  const s = (signal || '').toUpperCase();
+  if (s.includes('CONFIRMED')) return 'gc-pill-confirmed';
+  if (s.includes('MIXED')) return 'gc-pill-mixed';
+  if (s.includes('WATCH')) return 'gc-pill-watch';
+  if (s.includes('REFUTED')) return 'gc-pill-refuted';
+  return 'gc-pill-default';
+}
+function submitGutCheck() {
+  const ta = document.getElementById('gc-input');
+  const val = (ta.value || '').trim();
+  if (!val) { ta.focus(); return; }
+  const prompt = `GUT CHECK REQUEST:\n\n"${val}"\n\nPlease: 1. Define 2–3 testable hypotheses 2. Search for primary evidence 3. Rate signal: CONFIRMED / MIXED / WATCH / REFUTED 4. Note thesis impact 5. Add nuance 6. Give action implication for EUR-based moderate-risk long-term portfolio 7. Output as gut_checks_live.js schema entry`;
+  if (typeof sendPrompt === 'function') { sendPrompt(prompt); ta.value = ''; }
+  else { navigator.clipboard.writeText(prompt).then(() => showGcToast('Prompt copied — paste into Claude chat.')).catch(() => showGcToast('Paste into Claude: ' + val, 6000)); }
+}
+function showGcToast(msg, duration) {
+  duration = duration || 3500;
+  var old = document.getElementById('gc-toast'); if (old) old.remove();
+  var t = document.createElement('div'); t.id = 'gc-toast'; t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;padding:10px 20px;border-radius:3px;z-index:9999;opacity:0;transition:opacity .25s;pointer-events:none;max-width:480px;text-align:center;';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.opacity='1'; });
+  setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){ t.remove(); }, 300); }, duration);
+}
+function renderGutChecks() {
+  const checks = (typeof GUT_CHECKS !== 'undefined') ? GUT_CHECKS : [];
+  const submitHtml = `
+    <div class="sr"><h2>Research Desk</h2><span class="sub">Type a gut feeling · Claude researches it</span></div>
+    <div class="gc-input-wrap">
+      <label class="gc-input-label" for="gc-input">Your gut feeling or market sentiment</label>
+      <textarea class="gc-textarea" id="gc-input" placeholder="e.g. 'Chinese EV exports will be blocked by EU tariffs...'"></textarea>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:10px;">
+        <button class="gc-submit" onclick="submitGutCheck()">⚡ Research This →</button>
+        <span class="gc-hint">Sends to Claude · full research brief returned</span>
+      </div>
+    </div>`;
+  let cardsHtml = checks.length === 0
+    ? `<div class="gc-empty">No gut checks yet — type the first one above.</div>`
+    : [...checks].reverse().map(gc => {
+        const pillCls = signalPillClass(gc.signal);
+        const evItems = (gc.evidence || []).map(e => `<div class="gc-ev-item ${e.quality === 'PRIMARY' ? 'primary-ev' : ''}"><div class="gc-ev-point">${e.point}</div><div class="gc-ev-src">Source: ${e.source} · ${e.quality}</div></div>`).join('');
+        const hypItems = (gc.hypotheses || []).map(h => `<li>${h}</li>`).join('');
+        const retroHtml = gc.retro_verdict ? `<div class="gc-retro"><div class="gc-retro-lbl">Retrospective verdict · ${gc.retro_date}</div><div class="gc-retro-txt">${gc.retro_verdict}</div></div>` : '';
+        return `<div class="gc-card"><div class="gc-card-head"><span class="gc-signal-pill ${pillCls}">${gc.signal}</span><span class="gc-ts">${gc.timestamp} · ${gc.id}</span></div><div class="gc-raw">"${gc.raw_input}"</div><div class="gc-conf">Confidence: ${gc.confidence}</div><div class="gc-body"><div class="gc-section-lbl">Hypotheses tested</div><ul class="gc-hyp-list">${hypItems}</ul><div class="gc-section-lbl" style="margin-top:14px;">Evidence</div>${evItems}<div class="gc-section-lbl">Thesis impact</div><div class="gc-impact">${gc.thesis_impact}</div><div class="gc-section-lbl">Nuance</div><div class="gc-nuance">${gc.nuance}</div><div class="gc-section-lbl">What would change this verdict</div><div class="gc-change">${gc.what_would_change}</div><div class="gc-section-lbl">Action implication</div><div class="gc-action">${gc.action_implication}</div></div>${retroHtml}</div>`;
+      }).join('');
+  document.getElementById('gut-check').innerHTML = submitHtml + `<div class="sr"><h2>This Week's Checks</h2><span class="sub">${checks.length} pending</span></div>` + cardsHtml;
+}
+
+// ════════════════════════════════════════════════════════
+//  DEEP DIVE — Company Intelligence Brief
+// ════════════════════════════════════════════════════════
+
+const DD_SECTIONS = [
+  { num: '01', title: 'What They Do' },
+  { num: '02', title: 'Who Pays Them & Why' },
+  { num: '03', title: 'How Money Flows Through the Business' },
+  { num: '04', title: 'Who Is the Customer, Really' },
+  { num: '05', title: 'How Big Is the Market' },
+  { num: '06', title: 'Who They Compete With' },
+  { num: '07', title: 'Why They Win — Their Edge' },
+  { num: '08', title: 'Where They Are in Their Story' },
+  { num: '09', title: 'What Threatens Them' },
+  { num: '10', title: 'One Thing Most People Misunderstand' }
+];
+
+const DD_SYSTEM_PROMPT = `You are a business intelligence analyst writing for a sophisticated investor who wants to understand companies deeply — not just financially, but as businesses. The reader is a corporate attorney with 12+ years in VC/M&A, smart and experienced, but not a daily stock-trader. He wants to understand the business clearly enough to have an intelligent conversation, spot weak arguments, or decide if it deserves deeper research.
+
+WRITING RULES:
+- Plain, direct English. No jargon without immediate explanation.
+- Short paragraphs. Max 3 sentences each.
+- Numbers only when they illuminate the business model — not as metrics to track.
+- If a number tells you WHY the business works, include it. If it's just a financial metric, leave it out.
+- Be concrete and specific, never vague.
+- One anchor number per section where it helps understanding.
+
+OUTPUT FORMAT — respond with a JSON object, no markdown, no backticks:
+{
+  "company": "Full company name",
+  "ticker": "TICKER (exchange)",
+  "sector": "Sector / Industry",
+  "generated": "today's date",
+  "sections": [
+    { "num": "01", "title": "What They Do", "body": "..." },
+    { "num": "02", "title": "Who Pays Them & Why", "body": "..." },
+    { "num": "03", "title": "How Money Flows Through the Business", "body": "..." },
+    { "num": "04", "title": "Who Is the Customer, Really", "body": "..." },
+    { "num": "05", "title": "How Big Is the Market", "body": "..." },
+    { "num": "06", "title": "Who They Compete With", "body": "..." },
+    { "num": "07", "title": "Why They Win — Their Edge", "body": "..." },
+    { "num": "08", "title": "Where They Are in Their Story", "body": "..." },
+    { "num": "09", "title": "What Threatens Them", "body": "..." },
+    { "num": "10", "title": "One Thing Most People Misunderstand", "body": "..." }
+  ]
+}
+
+For section 10 (One Thing Most People Misunderstand): this should be the genuine counterintuitive insight — what separates someone who really gets this company from someone who just read the headline. Be bold. Don't be generic.`;
+
+// History stored in sessionStorage (persists through tab switches, cleared on close)
+function getDDHistory() {
+  try { return JSON.parse(sessionStorage.getItem('dd_history') || '[]'); } catch(e) { return []; }
+}
+function addDDHistory(name) {
+  let h = getDDHistory();
+  h = h.filter(x => x.toLowerCase() !== name.toLowerCase());
+  h.unshift(name);
+  h = h.slice(0, 10);
+  sessionStorage.setItem('dd_history', JSON.stringify(h));
+}
+
+function renderDeepDive() {
+  const apiKey = localStorage.getItem('dd_api_key') || '';
+  const history = getDDHistory();
+
+  const html = `
+    <div class="sr"><h2>Company Deep Dive</h2><span class="sub">10-section business intelligence brief · generated on demand · ~8 min read</span></div>
+
+    <div class="dd-intro">
+      <div class="dd-intro-label">What this does</div>
+      <div class="dd-intro-body">
+        <p>Type any company name and get a <strong>business literacy brief</strong> — not financial analysis. After reading it, you'll understand the company well enough to have an intelligent conversation, spot weak arguments in an analyst report, or decide if it deserves deeper research. Numbers appear only to illuminate how the business works.</p>
+      </div>
+    </div>
+
+    <div class="dd-key-wrap">
+      <div class="dd-key-label">Claude API Key — stored locally on this device only</div>
+      <div class="dd-key-row">
+        <input class="dd-key-input" id="dd-key-input" type="password" placeholder="sk-ant-api03-..." value="${apiKey}" autocomplete="off">
+        <button class="dd-key-save" onclick="saveDDKey()">Save Key</button>
+        <span class="dd-key-status ${apiKey ? 'ok' : 'missing'}" id="dd-key-status">${apiKey ? '✓ Key saved' : '✗ No key'}</span>
+      </div>
+    </div>
+
+    <div class="dd-search-wrap">
+      <input class="dd-search-input" id="dd-search-input" type="text" placeholder="Type a company name — e.g. Visa, ASML, Spotify, Rheinmetall..." autocomplete="off" onkeydown="if(event.key==='Enter')runDeepDive()">
+      <button class="dd-search-btn" id="dd-search-btn" onclick="runDeepDive()">Generate Brief →</button>
+    </div>
+    <div class="dd-search-hint">Works on any publicly traded company, anywhere in the world.</div>
+
+    <div class="dd-loading" id="dd-loading">
+      <div class="dd-spinner"></div>
+      <div class="dd-loading-text">Researching</div>
+      <div class="dd-loading-company" id="dd-loading-company"></div>
+    </div>
+
+    <div class="dd-error" id="dd-error" style="display:none;">
+      <div class="dd-error-label">Error</div>
+      <div id="dd-error-msg"></div>
+    </div>
+
+    <div class="dd-result" id="dd-result">
+      <div class="dd-result-header">
+        <div>
+          <div class="dd-result-company" id="dd-res-company">—</div>
+          <div class="dd-result-meta" id="dd-res-meta">—</div>
+        </div>
+        <div class="dd-result-stamp">
+          <div class="dd-result-stamp-label">Brief generated</div>
+          <div class="dd-result-stamp-date" id="dd-res-date">—</div>
+        </div>
+      </div>
+      <div class="dd-sections" id="dd-sections"></div>
+      <button class="dd-new-btn" onclick="resetDeepDive()">← Search another company</button>
+    </div>
+
+    ${history.length > 0 ? `
+    <div class="dd-history">
+      <div class="dd-history-label">Recent searches</div>
+      <div class="dd-history-list" id="dd-history-list">
+        ${history.map(h => `<div class="dd-history-item" onclick="loadFromHistory('${h.replace(/'/g,"\\'")}')">◎ ${h}</div>`).join('')}
+      </div>
+    </div>` : ''}
+  `;
+
+  document.getElementById('deepdive').innerHTML = html;
+}
+
+function saveDDKey() {
+  const key = (document.getElementById('dd-key-input').value || '').trim();
+  if (!key) { document.getElementById('dd-key-status').textContent = '✗ No key entered'; document.getElementById('dd-key-status').className = 'dd-key-status missing'; return; }
+  localStorage.setItem('dd_api_key', key);
+  document.getElementById('dd-key-status').textContent = '✓ Key saved';
+  document.getElementById('dd-key-status').className = 'dd-key-status ok';
+}
+
+function loadFromHistory(name) {
+  document.getElementById('dd-search-input').value = name;
+  runDeepDive();
+}
+
+function resetDeepDive() {
+  document.getElementById('dd-result').classList.remove('show');
+  document.getElementById('dd-error').style.display = 'none';
+  document.getElementById('dd-search-input').value = '';
+  document.getElementById('dd-search-input').focus();
+  // Refresh history
+  renderDeepDive();
+}
+
+async function runDeepDive() {
+  const company = (document.getElementById('dd-search-input').value || '').trim();
+  if (!company) { document.getElementById('dd-search-input').focus(); return; }
+
+  const apiKey = localStorage.getItem('dd_api_key') || '';
+  if (!apiKey) {
+    document.getElementById('dd-error-msg').textContent = 'Please enter your Claude API key above first.';
+    document.getElementById('dd-error').style.display = 'block';
+    return;
+  }
+
+  // UI: loading state
+  document.getElementById('dd-error').style.display = 'none';
+  document.getElementById('dd-result').classList.remove('show');
+  document.getElementById('dd-loading').classList.add('show');
+  document.getElementById('dd-loading-company').textContent = company;
+  document.getElementById('dd-search-btn').disabled = true;
+
+  const userPrompt = `Write a Company Intelligence Brief for: ${company}
+
+Research the company thoroughly and answer all 10 sections with specific, concrete information about this actual company. Do not be generic. Every section should be specific to ${company}.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        system: DD_SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${response.status}`);
+    }
+
+    const data = await response.json();
+    const rawText = data.content?.find(b => b.type === 'text')?.text || '';
+
+    // Parse JSON — strip any accidental markdown fences
+    let brief;
+    try {
+      const cleaned = rawText.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/,'').trim();
+      brief = JSON.parse(cleaned);
+    } catch(parseErr) {
+      throw new Error('Could not parse response. The model returned: ' + rawText.substring(0, 200));
+    }
+
+    // Render result
+    renderDDResult(brief, company);
+    addDDHistory(brief.company || company);
+
+  } catch(err) {
+    document.getElementById('dd-error-msg').textContent = err.message || String(err);
+    document.getElementById('dd-error').style.display = 'block';
+  } finally {
+    document.getElementById('dd-loading').classList.remove('show');
+    document.getElementById('dd-search-btn').disabled = false;
+  }
+}
+
+function renderDDResult(brief, query) {
+  document.getElementById('dd-res-company').textContent = brief.company || query;
+  document.getElementById('dd-res-meta').textContent = [brief.ticker, brief.sector].filter(Boolean).join(' · ');
+  document.getElementById('dd-res-date').textContent = brief.generated || new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+  const sections = brief.sections || [];
+  const sectionsHtml = sections.map((s, i) => {
+    const isLast = i === sections.length - 1;
+    const bodyWithAnchor = (s.body || '').replace(/\[([^\]]+)\]/g, '<span class="dd-anchor">$1</span>');
+    return `
+      <div class="dd-section ${isLast ? 'dd-misunderstood' : ''}">
+        <div class="dd-section-head">
+          <div class="dd-section-num">${s.num || String(i+1).padStart(2,'0')}</div>
+          <div class="dd-section-title">${s.title || ''}</div>
+        </div>
+        <div class="dd-section-body">${bodyWithAnchor}</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('dd-sections').innerHTML = sectionsHtml;
+  document.getElementById('dd-result').classList.add('show');
+  document.getElementById('dd-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── INIT ──
 function init() {
   try {
     renderMast();
@@ -939,20 +1499,20 @@ function init() {
     renderSemisIntel();
     renderRisers();
     renderGlossary();
-    buildMobGrid();
-    renderMobTopBar();
-    document.getElementById('loading').style.display='none';
-    document.getElementById('app').style.display='block';
+    renderGutChecks();
+    renderDeepDive();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
   } catch(e) {
-    document.getElementById('loading').innerHTML=`
+    document.getElementById('loading').innerHTML = `
       <h2>Content file not found</h2>
       <p style="font-family:var(--mono);font-size:11px;color:var(--ink-light);">Waiting for content.js — check back after Thursday 07:00</p>
       <p style="font-family:var(--mono);font-size:10px;color:var(--red-light);margin-top:8px;">${e.message}</p>`;
   }
 }
 
-if (document.readyState==='loading') {
-  document.addEventListener('DOMContentLoaded',init);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
 } else {
   init();
 }
