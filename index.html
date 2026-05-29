@@ -652,6 +652,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
     <div>
       <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,243,236,.5);margin-bottom:3px;">EUR / USD</div>
       <span class="eur-rate-big" id="b-rate">—</span>
+      <div id="b-date" style="font-family:var(--mono);font-size:9px;color:rgba(247,243,236,.4);letter-spacing:.04em;margin-top:4px;">—</div>
     </div>
     <span class="eur-arrow" id="b-arrow">→</span>
   </div>
@@ -791,6 +792,7 @@ function renderMast() {
   document.getElementById('b-detail').textContent = m.eurusd_driver + '. ' + m.eurusd_outlook;
   document.getElementById('b-outlook').textContent = outLabels[dir] || '—';
   document.getElementById('b-range').textContent = m.eurusd_weekly_change + ' this week';
+  document.getElementById('b-date').textContent = m.date;
 
   // Mobile top bar
   var arrows2 = { rising:'↑', falling:'↓', stable:'→' };
