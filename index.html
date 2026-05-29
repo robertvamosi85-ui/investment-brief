@@ -566,6 +566,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <div class="mob-bar-rate">
     <div class="mob-bar-rate-val mob-rate-stable" id="mob-rate">—</div>
     <div class="mob-bar-rate-label">EUR / USD</div>
+    <div id="mob-date" style="font-family:var(--mono);font-size:9px;color:rgba(247,243,236,.4);letter-spacing:.04em;margin-top:2px;">—</div>
   </div>
 </div>
 
@@ -800,6 +801,7 @@ function renderMast() {
   if (mobRateEl) {
     mobRateEl.textContent = m.eurusd + ' ' + (arrows2[dir] || '→');
     mobRateEl.className = 'mob-bar-rate-val mob-rate-' + dir;
+    document.getElementById('mob-date').textContent = m.date;
   }
 
   // Mobile tile subtitles
