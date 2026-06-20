@@ -487,7 +487,7 @@ const BRIEF = {
         implication: "Memory pricing surge signals persistent AI training demand 6-8 weeks forward; SK Hynix, Micron, and Samsung all benefit; no plateau in sight for 2026."
       },
       {
-        id: "capex_revenue_gap",
+        id: "capex_revenue_gap", // TODO: add metric_value / metric_period / metric_label fields once next hyperscaler earnings land (AI Trade Integrity gap badge)
         label: "CapEx-to-Revenue Gap",
         info: "The bubble signal: if hyperscalers spend $200B+ on AI infrastructure but cannot show proportional AI-attributable revenue growth, the trade is pricing future potential not current cash flows.",
         signal: "AMBER",

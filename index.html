@@ -117,6 +117,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .lr-pct{font-family:var(--mono);font-size:12px;font-weight:500;text-align:right;}
 .up{color:var(--green);}.dn{color:var(--red);}
 
+/* WEEKLY LEAGUE BANNER */
+.league-banner{display:flex;flex-direction:column;border:1px solid var(--rule);margin-bottom:22px;overflow:hidden;}
+.lb-window{background:var(--ink);padding:11px 18px;}
+.lb-window-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,243,236,.5);margin-bottom:4px;}
+.lb-window-date{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--gold-light);}
+.lb-rule{background:var(--paper-mid);padding:11px 18px;}
+.lb-rule-status{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px;}
+.lb-rule-detail{font-size:11px;color:var(--ink-light);line-height:1.55;}
+
 /* SECTOR GRID */
 .sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:22px;}
 .sec-cell{padding:10px 12px;border:1px solid var(--rule);position:relative;overflow:hidden;}
@@ -232,6 +241,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .mb-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;}
 .mb-body{font-size:13px;color:var(--ink);line-height:1.65;}
 
+/* MARKET BREADTH */
+.breadth-card{border:1px solid var(--rule);padding:16px 18px;background:var(--paper);margin-bottom:18px;}
+.breadth-val{font-family:var(--serif);font-size:32px;font-weight:400;line-height:1;}
+.breadth-val-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light);margin-top:4px;}
+.breadth-section{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);}
+.breadth-section-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;}
+.breadth-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.breadth-check{font-size:12px;color:var(--ink-mid);line-height:1.6;}
+
 /* GLOSSARY */
 .gloss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
 .gc{border:1px solid var(--rule);padding:16px;}
@@ -296,6 +314,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .ind-finding{font-size:12px;color:var(--ink-mid);margin-top:3px;line-height:1.5;}
 .ind-impl{font-size:11px;color:var(--ink-light);margin-top:4px;font-style:italic;}
 .ind-clear{font-size:12px;color:var(--ink-light);font-style:italic;margin-top:3px;}
+.ind-metric{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.ind-metric-box{text-align:right;}
+.ind-metric-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2px;}
+.ind-metric-val{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--gold-light);white-space:nowrap;}
+.ind-metric-period{font-family:var(--mono);font-size:9px;color:var(--ink-light);margin-top:2px;white-space:nowrap;}
 
 /* GEO ROWS */
 .geo-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start;}
@@ -776,6 +799,27 @@ function mtClass(t) {
   return m[t] || 'mt-a';
 }
 
+function leagueWindowLabel(dateStr) {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const match = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})/);
+  if (!match) return '—';
+  const monthIdx = months.findIndex(x => match[1].slice(0,3).toLowerCase() === x.toLowerCase());
+  if (monthIdx === -1) return '—';
+  const d = new Date(Date.UTC(parseInt(match[3],10), monthIdx, parseInt(match[2],10)));
+  const daysSinceMonday = (d.getUTCDay() + 6) % 7;
+  const mondayThis = new Date(d); mondayThis.setUTCDate(d.getUTCDate() - daysSinceMonday);
+  const mondayPrev = new Date(mondayThis); mondayPrev.setUTCDate(mondayThis.getUTCDate() - 7);
+  const fridayPrev = new Date(mondayPrev); fridayPrev.setUTCDate(mondayPrev.getUTCDate() + 4);
+  const fmt = dt => months[dt.getUTCMonth()] + ' ' + dt.getUTCDate();
+  const startStr = fmt(mondayPrev);
+  const sameMonth = mondayPrev.getUTCMonth() === fridayPrev.getUTCMonth();
+  const endStr = sameMonth ? fridayPrev.getUTCDate() : fmt(fridayPrev);
+  const startYear = mondayPrev.getUTCFullYear();
+  const endYear = fridayPrev.getUTCFullYear();
+  if (startYear !== endYear) return startStr + ', ' + startYear + ' – ' + endStr + ', ' + endYear;
+  return startStr + '–' + endStr + ', ' + endYear;
+}
+
 // ── RENDER MASTHEAD ──
 function renderMast() {
   const m = BRIEF.meta;
@@ -867,7 +911,17 @@ function renderPulse() {
         </div>
       </div>
     </div>`;
-  html += `<div class="sr"><h2>Weekly Performance League</h2><span class="sub">Top 20 winners · Top 20 losers</span></div>
+  html += `<div class="sr"><h2>Weekly Performance League</h2></div>
+    <div class="league-banner">
+      <div class="lb-window">
+        <div class="lb-window-label">Measurement window</div>
+        <div class="lb-window-date">${leagueWindowLabel(BRIEF.meta.date)}</div>
+      </div>
+      <div class="lb-rule">
+        <div class="lb-rule-status">Last full week — never the one in progress.</div>
+        <div class="lb-rule-detail">No fixed list — a catalyst earns the spot: earnings, policy moves, analyst calls, geopolitical shocks, sector re-ratings. A move with no story doesn't qualify. Six theses, Mag7, and Discoveries names get first look; the list isn't capped at them.</div>
+      </div>
+    </div>
     <div class="league-wrap">
       <div class="ltable">
         <div class="lthead"><h3>▲ Top 20 Winners</h3><span style="font-family:var(--mono);font-size:9px;color:var(--ink-light);">weekly %</span></div>
@@ -954,13 +1008,31 @@ function renderExec() {
 // ── RENDER MACRO ──
 function renderMacro() {
   const m = BRIEF.macro;
+  const b = BRIEF.breadth;
   let html = `
     <div class="sr"><h2>What Shaped the World This Week</h2></div>
     <div class="macro-blocks">
       <div class="mb"><div class="mb-label">United States</div><div class="mb-body">${m.us}</div></div>
       <div class="mb"><div class="mb-label">Europe</div><div class="mb-body">${m.europe}</div></div>
       <div class="mb"><div class="mb-label">Asia &amp; EM</div><div class="mb-body">${m.asia}</div></div>
-    </div>
+    </div>`;
+  if (b) {
+    html += `
+    <div class="sr"><h2>Market Breadth &amp; Attribution</h2><span class="sub">Is the move broad, or borrowed from a few names?</span></div>
+    <div class="breadth-card">
+      <div class="breadth-val">${b.value}</div>
+      <div class="breadth-val-label">${b.value_label}</div>
+      <div class="breadth-section">
+        <div class="breadth-section-label">Driving the move</div>
+        <div class="breadth-tags">${b.drivers.map(d => `<span class="rtag rt-a">${d}</span>`).join('')}</div>
+      </div>
+      <div class="breadth-section">
+        <div class="breadth-section-label">Direct holdings check</div>
+        <div class="breadth-check">${b.holdings_check}</div>
+      </div>
+    </div>`;
+  }
+  html += `
     <div class="sr"><h2>What to Watch Next Week</h2></div>
     <div class="mb" style="border-left-color:var(--gold)"><div class="mb-label">Upcoming</div><div class="mb-body">${m.forward}</div></div>`;
   document.getElementById('macro').innerHTML = html;
@@ -1068,6 +1140,12 @@ function renderAITrade() {
   d.indicators.forEach(ind => {
     const sc2 = ind.signal==='GREEN'?'green':ind.signal==='AMBER'?'amber':'red';
     const blank = (ind.finding==='—'||!ind.finding);
+    const metricBox = ind.metric_value ? `
+          <div class="ind-metric-box">
+            <div class="ind-metric-label">${ind.metric_label || 'Gap'}</div>
+            <div class="ind-metric-val">${ind.metric_value} ${ind.metric_value.charAt(0)==='-' ? '↓' : '↑'}</div>
+            <div class="ind-metric-period">${ind.metric_period || ''}</div>
+          </div>` : '';
     html += `
       <div class="ind-row">
         <div>
@@ -1077,7 +1155,7 @@ function renderAITrade() {
           ${blank ? '<div class="ind-clear">No change this week</div>'
             : `<div class="ind-finding">${ind.finding}</div><div class="ind-impl">→ ${ind.implication}</div>`}
         </div>
-        <div style="padding-top:2px;"><span class="sig sig-${sc2}">${ind.signal}</span></div>
+        <div class="ind-metric" style="padding-top:2px;">${metricBox}<span class="sig sig-${sc2}">${ind.signal}</span></div>
       </div>`;
   });
   html += `</div>`;
