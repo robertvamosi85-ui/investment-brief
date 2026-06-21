@@ -650,12 +650,6 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
       <div><div class="mob-tile-label">Semis Intel</div><div class="mob-tile-sub">Supply chain</div></div>
       <div class="mob-tile-accent mob-acc-red"></div>
     </div>
-    <div class="mob-tile" onclick="mobShow('risers','Rising Stars')">
-      <div class="mob-tile-dot mob-dot-blue"></div>
-      <div class="mob-tile-icon">★</div>
-      <div><div class="mob-tile-label">Rising Stars</div><div class="mob-tile-sub" id="msub-risers">Screener</div></div>
-      <div class="mob-tile-accent mob-acc-gold"></div>
-    </div>
     <div class="mob-tile" onclick="mobShow('glossary','Glossary')">
       <div class="mob-tile-dot mob-dot-blue"></div>
       <div class="mob-tile-icon">📖</div>
@@ -700,10 +694,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <button class="nb" onclick="show('discoveries',this)">8 Discoveries</button>
   <button class="nb" onclick="show('aitrade',this)">AI Trade Integrity</button>
   <button class="nb" onclick="show('semis',this)">Semis Intel</button>
-  <button class="nb pulse" id="nb-risers" onclick="show('risers',this)">★ Rising Stars</button>
-  <button class="nb" style="color:var(--gold);border-bottom-color:transparent;" onclick="show('gut-check',this)" id="nb-gut">⚡ Gut Check</button>
-  <button class="nb deepdive" onclick="show('deepdive',this)">◎ Deep Dive</button>
-  <button class="nb" onclick="show('glossary',this)">Glossary</button>
+<button class="nb" onclick="show('glossary',this)">Glossary</button>
 </div>
 
 <div class="main">
@@ -715,10 +706,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <div id="discoveries" class="panel"></div>
   <div id="aitrade" class="panel"></div>
   <div id="semis" class="panel"></div>
-  <div id="risers" class="panel"></div>
   <div id="glossary" class="panel"></div>
-  <div id="gut-check" class="panel"></div>
-  <div id="deepdive" class="panel"></div>
 </div>
 
 </div><!-- /app -->
@@ -853,8 +841,6 @@ function renderMast() {
   if (pSub && BRIEF.vitals) pSub.textContent = 'VIX ' + BRIEF.vitals.vix.value + ' · F&G ' + BRIEF.vitals.fear_greed.value;
   var aiSub = document.getElementById('msub-ai');
   if (aiSub && BRIEF.ai_trade) aiSub.textContent = BRIEF.ai_trade.status + ' · 5 signals';
-  var rSub = document.getElementById('msub-risers');
-  if (rSub && BRIEF.risers) rSub.textContent = BRIEF.risers.length === 0 ? 'No candidates' : BRIEF.risers.length + ' candidates';
   var m7Sub = document.getElementById('msub-mag7');
   if (m7Sub && BRIEF.mag7) {
     var buys = BRIEF.mag7.filter(s => s.verdict === 'BUY').length;
@@ -1597,10 +1583,7 @@ function init() {
     renderDiscoveries();
     renderAITrade();
     renderSemisIntel();
-    renderRisers();
     renderGlossary();
-    renderGutChecks();
-    renderDeepDive();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } catch(e) {
