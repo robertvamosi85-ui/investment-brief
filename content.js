@@ -513,6 +513,13 @@ const BRIEF = {
     ]
   },
 
+  breadth: {
+    value: "58%",
+    value_label: "S&P 500 above 50-day average",
+    drivers: ["Nvidia", "Microsoft", "Broadcom"],
+    holdings_check: "Three of five direct holdings — Nvidia, Microsoft, Broadcom — are doing the lifting. Broad enough to call this confirmation, not a mega-cap mask. TSM and AMD lagged the index this week."
+  },
+
   semis: {
     status: "WATCH",
     regions: [
