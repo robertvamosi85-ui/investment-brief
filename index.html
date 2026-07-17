@@ -572,6 +572,44 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   .dd-search-wrap{flex-direction:column;}
   .dd-search-btn{padding:14px 18px;}
 }
+
+/* ===== MONTHLY STOCK MOVERS ===== */
+.mv-dateline{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-light);border-bottom:1px solid var(--rule);padding-bottom:8px;margin:6px 0 18px;}
+.mv-status{font-weight:600;}
+.mv-dot-green{color:var(--green);} .mv-dot-amber{color:var(--gold-light);}
+.mv-sec{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:22px 0 12px;display:flex;align-items:center;gap:10px;}
+.mv-sec::after{content:"";flex:1;height:1px;background:var(--rule);}
+.mv-hint{font-family:var(--mono);font-size:9px;color:var(--ink-light);letter-spacing:.04em;margin:-6px 0 8px;}
+.mv-story{border-left:3px solid var(--ink);padding:2px 0 2px 14px;margin-bottom:14px;}
+.mv-story-t{font-family:var(--serif,Georgia,serif);font-weight:700;font-size:16px;line-height:1.25;}
+.mv-story-n{font-family:var(--mono);font-size:11px;color:var(--blue);margin:3px 0 5px;letter-spacing:.02em;}
+.mv-story-d{font-size:13px;line-height:1.5;color:var(--ink-mid);}
+.mv-table{margin-top:2px;}
+.mv-row{display:grid;grid-template-columns:26px 1fr 40px 62px;gap:8px;align-items:start;padding:11px 4px;border-bottom:1px solid var(--rule);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.mv-row:active{background:var(--paper-mid);}
+.mv-rank{font-family:var(--serif,Georgia,serif);font-weight:700;font-size:16px;color:var(--ink);}
+.mv-tk{font-family:var(--mono);font-weight:600;font-size:13px;}
+.mv-nm{font-size:11px;color:var(--ink-light);margin-left:8px;}
+.mv-tags{margin-top:5px;display:flex;flex-wrap:wrap;gap:5px;}
+.mv-tag{font-family:var(--mono);font-size:8px;letter-spacing:.06em;padding:2px 6px;border-radius:3px;text-transform:uppercase;font-weight:600;}
+.mv-fund{background:rgba(26,92,53,.12);color:var(--green);}
+.mv-mech{background:rgba(26,45,92,.12);color:var(--blue);}
+.mv-sent{background:rgba(184,134,11,.16);color:var(--gold);}
+.mv-opt{background:rgba(139,26,26,.12);color:var(--red);}
+.mv-why{font-size:11.5px;line-height:1.45;color:var(--ink-mid);margin-top:7px;display:none;}
+.mv-row.open .mv-why{display:block;}
+.mv-move{font-family:var(--mono);font-size:12px;text-align:center;}
+.mv-up{color:var(--green);} .mv-dn{color:var(--red);}
+.mv-new{color:var(--gold);font-weight:600;font-size:8.5px;letter-spacing:.06em;}
+.mv-flat{color:var(--ink-light);}
+.mv-pct{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--green);text-align:right;white-space:nowrap;}
+.mv-mv-row{display:flex;gap:10px;font-size:12px;line-height:1.5;margin-bottom:8px;}
+.mv-mk{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.06em;padding:2px 6px;border-radius:3px;height:fit-content;margin-top:1px;white-space:nowrap;}
+.mv-mk-in{background:rgba(26,92,53,.12);color:var(--green);}
+.mv-mk-out{background:rgba(139,26,26,.10);color:var(--red);}
+.mv-legend{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 4px;}
+.mv-foot{font-family:var(--mono);font-size:9px;color:var(--ink-light);line-height:1.7;border-top:1px solid var(--rule);padding-top:12px;margin-top:18px;}
+.mv-disc{color:var(--red);opacity:.85;}
 </style>
 </head>
 <body>
@@ -656,6 +694,12 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
       <div><div class="mob-tile-label">Glossary</div><div class="mob-tile-sub">10 key terms</div></div>
       <div class="mob-tile-accent mob-acc-blue"></div>
     </div>
+    <div class="mob-tile" onclick="mobShow('movers','Monthly Movers')">
+      <div class="mob-tile-dot mob-dot-green"></div>
+      <div class="mob-tile-icon">↗</div>
+      <div><div class="mob-tile-label">Monthly Movers</div><div class="mob-tile-sub">Top 10 S&amp;P 500</div></div>
+      <div class="mob-tile-accent mob-acc-gold"></div>
+    </div>
   </div>
 </div>
 
@@ -694,6 +738,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <button class="nb" onclick="show('discoveries',this)">8 Discoveries</button>
   <button class="nb" onclick="show('aitrade',this)">AI Trade Integrity</button>
   <button class="nb" onclick="show('semis',this)">Semis Intel</button>
+<button class="nb" onclick="show('movers',this)">↗ Monthly Movers</button>
 <button class="nb" onclick="show('glossary',this)">Glossary</button>
 </div>
 
@@ -706,12 +751,14 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   <div id="discoveries" class="panel"></div>
   <div id="aitrade" class="panel"></div>
   <div id="semis" class="panel"></div>
+  <div id="movers" class="panel"></div>
   <div id="glossary" class="panel"></div>
 </div>
 
 </div><!-- /app -->
 
 <script src="content.js?v=20260716b"></script>
+<script src="movers.js?v=20260703a"></script>
 <script src="gut_checks_live.js"></script>
 <script>
 
@@ -1572,6 +1619,76 @@ function renderDDResult(brief, query) {
 }
 
 // ── INIT ──
+function renderMovers() {
+  const el = document.getElementById('movers');
+  if (!el) return;
+  const d = (typeof MOVERS !== 'undefined') ? MOVERS : null;
+  if (!d) {
+    el.innerHTML = '<div class="sr"><h2>Monthly Stock Movers</h2>'
+      + '<span class="sub">No data yet \u2014 refreshes the first Thursday of each month.</span></div>';
+    return;
+  }
+  const legColor = { memory:'var(--green)', compute:'var(--blue)', optical:'var(--gold)' };
+  const dCls = { fundamental:'mv-fund', mechanical:'mv-mech', sentiment:'mv-sent', optionality:'mv-opt' };
+  const dLbl = { fundamental:'Fundamental', mechanical:'Mechanical', sentiment:'Sentiment', optionality:'Optionality' };
+
+  const stories = d.stories.map(s => `
+    <div class="mv-story" style="border-left-color:${legColor[s.leg]||'var(--ink)'}">
+      <div class="mv-story-t">${s.title}</div>
+      <div class="mv-story-n">${s.names.join(' \u00b7 ')}</div>
+      <div class="mv-story-d">${s.detail}</div>
+    </div>`).join('');
+
+  const moveCell = m => {
+    if (!m) return '';
+    if (m.dir === 'new')  return '<span class="mv-new">NEW</span>';
+    if (m.dir === 'up')   return `<span class="mv-up">\u25b2${m.n||''}</span>`;
+    if (m.dir === 'down') return `<span class="mv-dn">\u25bc${m.n||''}</span>`;
+    return '<span class="mv-flat">\u2014</span>';
+  };
+
+  const rows = d.ranking.map(r => `
+    <div class="mv-row" onclick="this.classList.toggle('open')">
+      <div class="mv-rank">${r.rank}</div>
+      <div class="mv-id">
+        <span class="mv-tk">${r.ticker}</span><span class="mv-nm">${r.name}</span>
+        <div class="mv-tags">${r.drivers.map(x => `<span class="mv-tag ${dCls[x]||''}">${dLbl[x]||x}</span>`).join('')}</div>
+        ${r.why ? `<div class="mv-why">${r.why}</div>` : ''}
+      </div>
+      <div class="mv-move">${moveCell(r.move)}</div>
+      <div class="mv-pct">${r.pct}</div>
+    </div>`).join('');
+
+  const mv = d.movement || {};
+  const inRow  = mv.entered ? `<div class="mv-mv-row"><span class="mv-mk mv-mk-in">IN</span><div><b>${mv.entered.tickers.join(', ')}</b> \u2014 ${mv.entered.note}</div></div>` : '';
+  const outRow = mv.exited  ? `<div class="mv-mv-row"><span class="mv-mk mv-mk-out">OUT</span><div><b>${mv.exited.tickers.join(', ')}</b> \u2014 ${mv.exited.note}</div></div>` : '';
+
+  const diverged = d.meta.source_status === 'divergent';
+  const dotCls = diverged ? 'mv-dot-amber' : 'mv-dot-green';
+  const dotTxt = diverged ? 'SOURCES DIVERGED' : 'SOURCE VERIFIED';
+
+  el.innerHTML = `
+    <div class="sr"><h2>Monthly Stock Movers</h2><span class="sub">Top 10 S&amp;P 500 gainers \u00b7 ${d.meta.window}</span></div>
+    <div class="mv-dateline">
+      <span>${d.meta.universe.toUpperCase()} \u00b7 ${d.meta.window.toUpperCase()}</span>
+      <span class="mv-status ${dotCls}" title="${(d.meta.source_note||'').replace(/"/g,'&quot;')}">\u25cf ${dotTxt}</span>
+    </div>
+    <div class="mv-sec">The stories</div>
+    ${stories}
+    <div class="mv-sec">The ranking</div>
+    <div class="mv-hint">Tap a row for the driver.</div>
+    <div class="mv-table">${rows}</div>
+    <div class="mv-sec">Movement</div>
+    ${inRow}${outRow}
+    <div class="mv-legend">
+      <span class="mv-tag mv-fund">Fundamental</span>
+      <span class="mv-tag mv-mech">Mechanical</span>
+      <span class="mv-tag mv-sent">Sentiment</span>
+      <span class="mv-tag mv-opt">Optionality</span>
+    </div>
+    <div class="mv-foot">${d.sources}<br><span class="mv-disc">Descriptive only \u2014 not a recommendation to act.</span></div>`;
+}
+
 function init() {
   try {
     renderMast();
@@ -1583,9 +1700,11 @@ function init() {
     renderDiscoveries();
     renderAITrade();
     renderSemisIntel();
+    renderMovers();
     renderGlossary();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    if (isMobile()) mobHome();
   } catch(e) {
     document.getElementById('loading').innerHTML = `
       <h2>Content file not found</h2>
