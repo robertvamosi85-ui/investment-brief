@@ -73,7 +73,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .sr .sub{font-family:var(--mono);font-size:10px;color:var(--ink-light);letter-spacing:.06em;white-space:nowrap;}
 
 /* VITALS */
-.vitals-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px;}
+.vitals-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;}
 .vital-card{border:1px solid var(--rule);padding:14px 16px;background:var(--paper);}
 .vital-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;}
 .glink{font-family:var(--mono);font-size:9px;color:var(--gold);border-bottom:1px dashed var(--gold);cursor:pointer;}
@@ -908,28 +908,21 @@ function renderPulse() {
   if (v.fear_greed.value < 35) fgClass = 'fear-v';
   if (v.fear_greed.value > 65) fgClass = 'greed-v';
   let html = `
-    <div class="sr"><h2>Market Vital Signs</h2><span class="sub">Three numbers · full explanations in <span style="color:var(--gold);cursor:pointer;border-bottom:1px dashed var(--gold);" onclick="goGloss()">Glossary tab</span></span></div>
+    <div class="sr"><h2>Market Vital Signs</h2><span class="sub">Two numbers · full explanations in <span style="color:var(--gold);cursor:pointer;border-bottom:1px dashed var(--gold);" onclick="goGloss()">Glossary tab</span></span></div>
     <div class="vitals-row">
       <div class="vital-card">
         <div class="vital-label">Fear &amp; Greed Index <span class="glink" onclick="goGloss()">→ Glossary</span></div>
         <div class="vital-val ${fgClass}">${v.fear_greed.value}</div>
         <div class="gauge"><div class="gmark" style="left:${v.fear_greed.value}%"></div></div>
-        <div class="vital-sub">${v.fear_greed.label} · was ${v.fear_greed.last_week} last week</div>
+        <div class="vital-sub">${v.fear_greed.label}${v.fear_greed.last_week !== undefined ? " · was " + v.fear_greed.last_week + " last week" : ""}</div>
         <div class="vital-explain">${v.fear_greed.interpretation}</div>
       </div>
       <div class="vital-card">
         <div class="vital-label">VIX — Volatility Index <span class="glink" onclick="goGloss()">→ Glossary</span></div>
         <div class="vital-val neutral-v">${v.vix.value}</div>
         <div class="gauge"><div class="gmark" style="left:${Math.min(v.vix.value*2,100)}%"></div></div>
-        <div class="vital-sub">${v.vix.label} · was ${v.vix.last_week} last week</div>
+        <div class="vital-sub">${v.vix.label}${v.vix.last_week !== undefined ? " · was " + v.vix.last_week + " last week" : ""}</div>
         <div class="vital-explain">${v.vix.interpretation}</div>
-      </div>
-      <div class="vital-card">
-        <div class="vital-label">Put/Call Ratio <span class="glink" onclick="goGloss()">→ Glossary</span></div>
-        <div class="vital-val neutral-v">${v.put_call.value}</div>
-        <div class="gauge"><div class="gmark" style="left:${Math.min(v.put_call.value*50,100)}%"></div></div>
-        <div class="vital-sub">${v.put_call.label} · was ${v.put_call.last_week} last week</div>
-        <div class="vital-explain">${v.put_call.interpretation}</div>
       </div>
     </div>`;
   html += `<div class="sr"><h2>Market Regime</h2><span class="sub">The narrative investors are telling themselves</span></div>
