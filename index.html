@@ -1002,7 +1002,7 @@ function renderPulse() {
           <div class="flow-label">${f.label}</div>
           <div class="flow-amount ${f.direction === 'in' ? 'in-color' : 'out-color'}">${f.amount}</div>
           <div class="flow-dir ${f.direction === 'in' ? 'in-color' : 'out-color'}">${f.direction === 'in' ? 'Inflows' : 'Outflows'} this week</div>
-          <div class="flow-bar-w"><div class="flow-bar ${f.direction === 'in' ? 'bar-in' : 'bar-out'}" style="width:${f.pct}%"></div></div>
+          
           <div class="flow-note">${f.note}</div>
         </div>`).join('')}
     </div>`;
